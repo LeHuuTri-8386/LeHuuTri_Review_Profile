@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lê Hữu Trí — CV</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --teal:    #1abc9c;
+  --teal-dk: #15a084;
+  --dark:    #1c1c1e;
+  --white:   #ffffff;
+  --panel:   #f5f6f8;
+  --panel2:  #eef0f3;
+  --border:  #e2e5ea;
+  --text:    #2d3142;
+  --muted:   #9098a9;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Barlow', sans-serif;
+  background: var(--white);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  height: 60px;
+  box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--dark);
+}
+.nav-logo .logo-box {
+  width: 32px; height: 32px;
+  background: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700; color: #fff;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--teal); }
+
+#home {
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  padding-top: 60px;
+}
+
+.hero-left {
+  flex: 0 0 52%;
+  background: var(--dark);
+  padding: 80px 60px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.hero-left::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 10%; bottom: 10%;
+  width: 3px;
+  background: linear-gradient(180deg, transparent, var(--teal), transparent);
+}
+
+.hi-badge {
+  display: inline-block;
+  background: var(--teal);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  padding: 5px 16px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.hero-role {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 48px;
+}
+
+.info-table {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.info-label {
+  padding: 13px 0;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.info-val {
+  padding: 13px 0 13px 18px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.82);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.info-val a { color: var(--teal); text-decoration: none; }
+
+.hero-right {
+  flex: 1;
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  gap: 24px;
+}
+
+.hero-right::before {
+  content: '';
+  position: absolute;
+  width: 340px; height: 340px;
+  border-radius: 50%;
+  border: 1px solid rgba(26,188,156,0.12);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+}
+.hero-right::after {
+  content: '';
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  border: 1px solid rgba(26,188,156,0.06);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.portrait-wrap {
+  width: 220px; height: 260px;
+  position: relative;
+  z-index: 1;
+}
+.portrait-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #e8eaed 0%, #d0d4db 100%);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+.portrait-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center top;
+  display: block;
+}
+.portrait-accent {
+  position: absolute;
+  bottom: -16px; right: -16px;
+  width: 120px; height: 120px;
+  border: 2px solid rgba(26,188,156,0.3);
+}
+.portrait-dots {
+  position: absolute;
+  top: -14px; left: -14px;
+  width: 64px; height: 64px;
+  background-image: radial-gradient(circle, rgba(26,188,156,0.5) 1px, transparent 1px);
+  background-size: 9px 9px;
+}
+.portrait-center {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 6px;
+}
+.portrait-initials {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 64px; font-weight: 700;
+  color: rgba(0,0,0,0.07); line-height: 1;
+}
+.portrait-lbl {
+  font-size: 9px; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--teal);
+}
+
+.open-badge {
+  display: flex; align-items: center; gap: 8px;
+  background: #fff;
+  border: 1px solid rgba(26,188,156,0.35);
+  padding: 8px 18px;
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--teal);
+  z-index: 1;
+  box-shadow: 0 2px 12px rgba(26,188,156,0.1);
+}
+.open-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(26,188,156,0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(26,188,156,0); }
+}
+
+.section { padding: 80px 0; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 60px; }
+
+.sec-header { margin-bottom: 48px; }
+.sec-eyebrow {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 8px;
+}
+.sec-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 36px; font-weight: 700;
+  color: var(--dark); letter-spacing: 0.02em; line-height: 1;
+}
+.sec-line { width: 40px; height: 3px; background: var(--teal); margin-top: 14px; }
+
+#about { background: var(--white); }
+
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 60px; align-items: start;
+}
+.about-text {
+  font-size: 14px; color: #5a6173; line-height: 1.95;
+}
+.about-text p + p { margin-top: 16px; }
+
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.stat-box {
+  background: var(--panel);
+  border-top: 3px solid transparent;
+  padding: 28px 24px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.stat-box:hover {
+  border-color: var(--teal);
+  box-shadow: 0 4px 20px rgba(26,188,156,0.08);
+}
+.stat-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 42px; font-weight: 700; color: var(--dark); line-height: 1;
+}
+.stat-num span { color: var(--teal); }
+.stat-label {
+  font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--muted); margin-top: 6px;
+}
+
+#skills { background: var(--panel); }
+
+.skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+.skill-card {
+  background: var(--white);
+  padding: 28px;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.skill-card:hover {
+  border-color: var(--teal);
+  box-shadow: 0 4px 20px rgba(26,188,156,0.08);
+}
+.skill-icon {
+  width: 38px; height: 38px;
+  background: rgba(26,188,156,0.08);
+  border: 1px solid rgba(26,188,156,0.2);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px; font-size: 17px;
+}
+.skill-name { font-size: 13px; font-weight: 600; color: var(--dark); margin-bottom: 12px; }
+
+.skill-dots { display: flex; gap: 5px; margin-bottom: 6px; }
+.skill-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--panel2); border: 1px solid var(--border);
+}
+.skill-dot.filled { background: var(--teal); border-color: var(--teal); }
+
+.skill-bar-track { height: 3px; background: var(--panel2); margin-bottom: 6px; }
+.skill-bar-fill { height: 3px; background: var(--teal); transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+.skill-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; color: var(--teal); letter-spacing: 0.05em;
+}
+
+#strengths { background: var(--white); }
+.strength-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.strength-item {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 14px;
+  font-size: 14px; color: #5a6173; line-height: 1.7;
+}
+.strength-item::before {
+  content: '›';
+  color: var(--teal); font-size: 20px; line-height: 1.2; flex-shrink: 0;
+}
+
+#experience { background: var(--panel); }
+
+.exp-grid { display: grid; grid-template-columns: 190px 1fr; gap: 0; }
+.exp-timeline { display: flex; flex-direction: column; position: relative; }
+.exp-timeline::after {
+  content: '';
+  position: absolute; right: 0; top: 0; bottom: 0;
+  width: 1px; background: var(--border);
+}
+.timeline-item {
+  padding: 0 28px 44px 0;
+  text-align: right; position: relative;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.t-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--teal); letter-spacing: 0.06em; margin-bottom: 4px;
+}
+.t-org { font-size: 11px; color: var(--muted); }
+.timeline-dot {
+  position: absolute; right: -5px; top: 5px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--teal); border: 2px solid var(--white);
+  box-shadow: 0 0 0 2px var(--teal);
+}
+
+.exp-content { padding-left: 40px; }
+.exp-block { padding-bottom: 44px; }
+.exp-block:last-child { padding-bottom: 0; }
+.exp-role {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 10px;
+}
+.exp-desc { font-size: 13px; color: #5a6173; line-height: 1.85; margin-bottom: 14px; }
+.exp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.exp-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 9px;
+  padding: 4px 10px;
+  background: rgba(26,188,156,0.07);
+  border: 1px solid rgba(26,188,156,0.22);
+  color: var(--teal); letter-spacing: 0.06em;
+}
+
+#portfolio { background: var(--white); }
+
+.proj-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+.proj-card {
+  background: var(--panel);
+  padding: 28px;
+  border-top: 3px solid var(--border);
+  position: relative; overflow: hidden;
+  transition: border-color 0.22s, box-shadow 0.22s;
+}
+.proj-card:hover {
+  border-color: var(--teal);
+  box-shadow: 0 6px 28px rgba(26,188,156,0.1);
+}
+.proj-card::before {
+  content: attr(data-num);
+  position: absolute; top: 10px; right: 18px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 60px; font-weight: 700;
+  color: rgba(0,0,0,0.03); line-height: 1;
+}
+.proj-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; color: var(--teal); letter-spacing: 0.1em; margin-bottom: 10px;
+}
+.proj-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 20px; font-weight: 700; color: var(--dark);
+  line-height: 1.2; margin-bottom: 6px;
+}
+.proj-cat {
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 16px; padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.proj-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+.proj-bullets li {
+  font-size: 12px; color: #5a6173;
+  padding-left: 14px; position: relative; line-height: 1.6;
+}
+.proj-bullets li::before {
+  content: '›'; position: absolute; left: 0;
+  color: var(--teal); font-size: 14px; line-height: 1.3;
+}
+.proj-stack { display: flex; flex-wrap: wrap; gap: 5px; }
+.stack-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: 8px;
+  padding: 3px 8px;
+  background: var(--white); border: 1px solid var(--border);
+  color: var(--muted); letter-spacing: 0.05em;
+}
+
+#contact { background: var(--panel); }
+
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+
+.cert-list { list-style: none; display: flex; flex-direction: column; }
+.cert-item {
+  padding: 18px 0; border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 14px;
+}
+.cert-icon {
+  width: 34px; height: 34px; flex-shrink: 0;
+  background: rgba(26,188,156,0.07);
+  border: 1px solid rgba(26,188,156,0.2);
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+}
+.cert-name { font-size: 13px; font-weight: 500; color: var(--dark); margin-bottom: 3px; }
+.cert-sub { font-size: 11px; color: var(--muted); }
+
+.contact-items { display: flex; flex-direction: column; }
+.c-item {
+  padding: 18px 0; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 14px;
+}
+.c-icon {
+  width: 34px; height: 34px; flex-shrink: 0;
+  background: rgba(26,188,156,0.07);
+  border: 1px solid rgba(26,188,156,0.2);
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+}
+.c-label {
+  font-size: 9px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 2px;
+}
+.c-val { font-size: 13px; color: var(--text); }
+.c-val a { color: var(--teal); text-decoration: none; }
+
+footer {
+  background: var(--dark);
+  padding: 24px 60px;
+  display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.footer-copy {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 0.06em;
+}
+
+.marquee-wrap {
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  padding: 12px 60px;
+}
+.marquee-wrap marquee {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+  padding: 7px 0;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  #home { flex-direction: column; }
+  .hero-left { flex: none; padding: 60px 32px 48px; }
+  .hero-right { min-height: 300px; padding: 40px; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+  .skills-grid, .proj-grid { grid-template-columns: 1fr 1fr; }
+  .exp-grid { grid-template-columns: 1fr; }
+  .container { padding: 0 28px; }
+  nav { padding: 0 24px; }
+  footer { padding: 24px 28px; }
+  .marquee-wrap { padding: 12px 28px; }
+}
+@media (max-width: 560px) {
+  .skills-grid, .proj-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { .open-dot { animation: none; } }
+
+.lang-wrap { position: relative; }
+
+.lang-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 7px 12px;
+  font-family: 'Barlow', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+.lang-btn:hover {
+  border-color: var(--teal);
+  box-shadow: 0 2px 10px rgba(26,188,156,0.12);
+}
+
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--white);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  min-width: 190px;
+  z-index: 200;
+  animation: dropIn 0.15s ease;
+}
+.lang-dropdown.open { display: block; }
+
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.lang-option {
+  display: flex; align-items: center; gap: 12px;
+  padding: 13px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-bottom: 1px solid var(--border);
+}
+.lang-option:last-child { border-bottom: none; }
+.lang-option:hover { background: var(--panel); }
+
+.lang-flag { font-size: 22px; line-height: 1; flex-shrink: 0; }
+.lang-name { font-size: 13px; font-weight: 600; color: var(--dark); }
+.lang-sub  { font-size: 10px; color: var(--muted); margin-top: 1px; letter-spacing: 0.05em; }
+.lang-check { margin-left: auto; color: var(--teal); font-weight: 700; font-size: 13px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="logo-box">L</div>
+    HUU TRI
+  </div>
+  <ul class="nav-links">
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#strengths">Strengths</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#portfolio">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="lang-wrap">
+    <button class="lang-btn" id="langBtn" onclick="toggleLangMenu()">
+      <span id="langFlag">🇺🇸</span>
+      <span id="langLabel">EN</span>
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="margin-left:2px"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <div class="lang-dropdown" id="langDropdown">
+      <div class="lang-option" onclick="setLang('en')">
+        <span class="lang-flag">🇺🇸</span>
+        <div>
+          <div class="lang-name">English</div>
+          <div class="lang-sub">United States</div>
+        </div>
+        <span class="lang-check" id="check-en">✓</span>
+      </div>
+      <div class="lang-option" onclick="setLang('vi')">
+        <span class="lang-flag">🇻🇳</span>
+        <div>
+          <div class="lang-name">Tiếng Việt</div>
+          <div class="lang-sub">Việt Nam</div>
+        </div>
+        <span class="lang-check" id="check-vi" style="display:none">✓</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section id="home">
+  <div class="hero-left">
+    <div class="hi-badge">Hi !</div>
+    <div class="hero-role">Network &amp; Cloud Infrastructure Engineer</div>
+    <div class="info-table">
+      <span class="info-label">Name</span>
+      <span class="info-val">Lê Hữu Trí</span>
+      <span class="info-label">DOB</span>
+      <span class="info-val">27/02/2004</span>
+      <span class="info-label">Phone</span>
+      <span class="info-val">0327 391 720</span>
+      <span class="info-label">Address</span>
+      <span class="info-val">Hoang Van Thu Street, Ward 2, Tan Binh District</span>
+      <span class="info-label">E-Mail</span>
+      <span class="info-val"><a href="mailto:trile.1036@gmail.com">trile.1036@gmail.com</a></span>
+      <span class="info-label">Education</span>
+      <span class="info-val">HUTECH University</span>
+      <span class="info-label">Major</span>
+      <span class="info-val">Computer Networks</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="portrait-wrap">
+      <div class="portrait-bg">
+        <img src="https://raw.githubusercontent.com/LeHuuTri-8386/LeHuuTri_Review_Profile/refs/heads/main/LeHuuTri_Review_Profile.jpg" alt="Lê Hữu Trí">
+      </div>
+      <div class="portrait-accent"></div>
+      <div class="portrait-dots"></div>
+    </div>
+    <div class="open-badge">
+      <span class="open-dot"></span>
+      Open to Opportunities
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-eyebrow">Who I Am</div>
+      <div class="sec-title">About Me</div>
+      <div class="sec-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Information Technology student majoring in Computer Networks at HCMC University of Technology (HUTECH), with a career orientation toward System Administration and Cloud Infrastructure.</p>
+        <p>Possess knowledge and hands-on practical experience with Linux operating systems and Cisco network device configuration.</p>
+        <p>Seeking to apply for a staff position to leverage academic knowledge, develop practical skills, and contribute to the growth of the company.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-num">4<span>+</span></div>
+          <div class="stat-label">Years Study</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">3<span>+</span></div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">5<span>mo</span></div>
+          <div class="stat-label">Internship</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">8<span>+</span></div>
+          <div class="stat-label">Technologies</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="section">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-eyebrow">What I Know</div>
+      <div class="sec-title">Skills</div>
+      <div class="sec-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">☁</div>
+        <div class="skill-name">AWS</div>
+        <div class="skill-dots">
+          <div class="skill-dot filled"></div>
+          <div class="skill-dot filled"></div>
+          <div class="skill-dot"></div>
+          <div class="skill-dot"></div>
+          <div class="skill-dot"></div>
+        </div>
+        <div class="skill-pct">2 / 5</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🐧</div>
+        <div class="skill-name">Linux Server Administration</div>
+        <div class="skill-dots">
+          <div class="skill-dot filled"></div>
+          <div class="skill-dot filled"></div>
+          <div class="skill-dot"></div>
+          <div class="skill-dot"></div>
+          <div class="skill-dot"></div>
+        </div>
+        <div class="skill-pct">2 / 5</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔌</div>
+        <div class="skill-name">Cisco Device Configuration</div>
+        <div class="skill-dots">
+          <div class="skill-dot filled"></div>
+          <div class="skill-dot filled"></div>
+          <div class="skill-dot"></div>
+          <div class="skill-dot"></div>
+          <div class="skill-dot"></div>
+        </div>
+        <div class="skill-pct">2 / 5</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="strengths" class="section">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-eyebrow">What I Bring</div>
+      <div class="sec-title">Strengths</div>
+      <div class="sec-line"></div>
+    </div>
+    <ul class="strength-list">
+      <li class="strength-item">Basic knowledge of network systems and services such as DNS, DHCP, and FTP</li>
+      <li class="strength-item">Basic experience working in a Linux environment</li>
+      <li class="strength-item">Ability to self-learn, research documentation, and proactively solve problems</li>
+    </ul>
+  </div>
+</section>
+
+<section id="experience" class="section">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-eyebrow">My Journey</div>
+      <div class="sec-title">Experience</div>
+      <div class="sec-line"></div>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-timeline">
+        <div class="timeline-item">
+          <div class="t-date">2026</div>
+          <div class="t-org">Green TG</div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-date">2026</div>
+          <div class="t-org">365EJSC</div>
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-item">
+          <div class="t-date">01/2022</div>
+          <div class="t-org">HUTECH</div>
+          <div class="timeline-dot"></div>
+        </div>
+      </div>
+      <div class="exp-content">
+        <div class="exp-block">
+          <div class="exp-role">IT Support Intern</div>
+          <div class="exp-desc">IT Support Intern – Công Ty TNHH Green TG – 3 months (2026)</div>
+          <div class="exp-tags">
+            <span class="exp-tag">IT Support</span>
+            <span class="exp-tag">Green TG</span>
+            <span class="exp-tag">3 Months</span>
+          </div>
+        </div>
+        <div class="exp-block">
+          <div class="exp-role">Backend Developer Intern</div>
+          <div class="exp-desc">Backend Developer Intern – 365EJSC – 2 months</div>
+          <div class="exp-tags">
+            <span class="exp-tag">Backend</span>
+            <span class="exp-tag">C#</span>
+            <span class="exp-tag">2 Months</span>
+          </div>
+        </div>
+        <div class="exp-block">
+          <div class="exp-role">Student — Computer Networks</div>
+          <div class="exp-desc">Computer Networks major at HUTECH from January 2022 to April 2026. Focused on Linux administration, Cisco configuration, AWS cloud computing, and practical Python programming.</div>
+          <div class="exp-tags">
+            <span class="exp-tag">HUTECH</span>
+            <span class="exp-tag">Networking</span>
+            <span class="exp-tag">2022 – 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio" class="section">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-eyebrow">What I Built</div>
+      <div class="sec-title">Course Projects</div>
+      <div class="sec-line"></div>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card" data-num="01">
+        <div class="proj-num">01 · Information Technology Major Projects</div>
+        <div class="proj-name">Secure Conversation AI with Guardrails</div>
+        <div class="proj-cat">IT Major Project</div>
+        <ul class="proj-bullets">
+          <li>Developed a Secure Conversation AI Chatbot system using Python and Claude Sonnet 3.5</li>
+          <li>Implemented Guardrails mechanisms (Guardrails AI, Claude Sonnet 3.5) to detect and prevent prompt injection, harmful content, and sensitive data leakage (PII)</li>
+          <li>Built logging and monitoring systems to oversee and optimize security performance</li>
+          <li>Deployed the solution as a containerized application on AWS EC2 cloud infrastructure</li>
+        </ul>
+        <div class="proj-stack">
+          <span class="stack-tag">Python</span>
+          <span class="stack-tag">Claude 3.5</span>
+          <span class="stack-tag">AWS EC2</span>
+          <span class="stack-tag">Docker</span>
+          <span class="stack-tag">Guardrails AI</span>
+        </div>
+      </div>
+      <div class="proj-card" data-num="02">
+        <div class="proj-num">02 · Linux Operating System</div>
+        <div class="proj-name">Nginx Reverse Proxy &amp; Web Server Cluster</div>
+        <div class="proj-cat">Linux Operating System</div>
+        <ul class="proj-bullets">
+          <li>Built an Nginx Reverse Proxy system and a Web server cluster; Reverse Proxy Nginx server acts as an intermediary to route requests from clients</li>
+          <li>High Availability &amp; Load Balancing — distributes traffic to Server 1 and Server 2 to ensure high availability</li>
+          <li>Centralized Services: integrates infrastructure services such as DHCP, DNS, and FTP on a single gateway/proxy</li>
+        </ul>
+        <div class="proj-stack">
+          <span class="stack-tag">Linux</span>
+          <span class="stack-tag">Nginx</span>
+          <span class="stack-tag">DHCP</span>
+          <span class="stack-tag">DNS</span>
+          <span class="stack-tag">FTP</span>
+        </div>
+      </div>
+      <div class="proj-card" data-num="03">
+        <div class="proj-num">03 · Cloud Computing</div>
+        <div class="proj-name">Cloud Access Security &amp; Monitoring</div>
+        <div class="proj-cat">Cloud Computing</div>
+        <ul class="proj-bullets">
+          <li>Securing Access: implemented monitoring and security controls</li>
+          <li>Deployed AWS login monitoring using Cloud Trail and CloudWatch to detect failed logins and automatically alert administrators to prevent unauthorized access</li>
+        </ul>
+        <div class="proj-stack">
+          <span class="stack-tag">AWS CloudTrail</span>
+          <span class="stack-tag">CloudWatch</span>
+          <span class="stack-tag">IAM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <div class="container">
+    <div class="sec-header">
+      <div class="sec-eyebrow">Get In Touch</div>
+      <div class="sec-title">Contact</div>
+      <div class="sec-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="sec-eyebrow" style="margin-bottom:20px">Certifications</div>
+        <ul class="cert-list">
+          <li class="cert-item">
+            <div class="cert-icon">🏆</div>
+            <div>
+              <div class="cert-name">IT Talent Search 2025 — 10th Edition</div>
+              <div class="cert-sub">01/2026 · Participated — Certified by the Faculty</div>
+            </div>
+          </li>
+          <li class="cert-item">
+            <div class="cert-icon">🌐</div>
+            <div>
+              <div class="cert-name">English</div>
+              <div class="cert-sub">Foreign Language</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div class="sec-eyebrow" style="margin-bottom:20px">Contact Info</div>
+        <div class="contact-items">
+          <div class="c-item">
+            <div class="c-icon">📞</div>
+            <div>
+              <div class="c-label">Phone</div>
+              <div class="c-val">0327 391 720</div>
+            </div>
+          </div>
+          <div class="c-item">
+            <div class="c-icon">✉</div>
+            <div>
+              <div class="c-label">Email</div>
+              <div class="c-val"><a href="mailto:trile.1036@gmail.com">trile.1036@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="c-item">
+            <div class="c-icon">📍</div>
+            <div>
+              <div class="c-label">Address</div>
+              <div class="c-val">Hoang Van Thu Street, Ward 2, Tan Binh District, Ho Chi Minh City</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-copy">lê hữu trí &nbsp;·&nbsp; trile.1036@gmail.com &nbsp;·&nbsp; 2026</div>
+  <div class="footer-copy">HUTECH · Computer Networks</div>
+</footer>
+
+<div class="marquee-wrap">
+  <marquee style="border:blue 2px SOLID">Lê Hữu Trí - Review Profile</marquee>
+</div>
+
+<script>
+const translations = {
+  en: {
+    navHome: 'Home', navAbout: 'About', navSkills: 'Skills',
+    navStrengths: 'Strengths', navExp: 'Experience', navProjects: 'Projects', navContact: 'Contact',
+    heroRole: 'Network &amp; Cloud Infrastructure Engineer',
+    labelName: 'Name', labelDob: 'DOB', labelPhone: 'Phone',
+    labelAddress: 'Address', labelEmail: 'E-Mail', labelEdu: 'Education', labelMajor: 'Major',
+    addrVal: 'Hoang Van Thu Street, Ward 2, Tan Binh District',
+    eduVal: 'HUTECH University', majorVal: 'Computer Networks',
+    openBadge: 'Open to Opportunities',
+    aboutEye: 'Who I Am', aboutTitle: 'About Me',
+    aboutP1: 'Information Technology student majoring in Computer Networks at HCMC University of Technology (HUTECH), with a career orientation toward System Administration and Cloud Infrastructure.',
+    aboutP2: 'Possess knowledge and hands-on practical experience with Linux operating systems and Cisco network device configuration.',
+    aboutP3: 'Seeking to apply for a staff position to leverage academic knowledge, develop practical skills, and contribute to the growth of the company.',
+    statYears: 'Years Study', statProjects: 'Projects', statIntern: 'Internship', statTech: 'Technologies',
+    skillsEye: 'What I Know', skillsTitle: 'Skills',
+    strEye: 'What I Bring', strTitle: 'Strengths',
+    str1: 'Basic knowledge of network systems and services such as DNS, DHCP, and FTP',
+    str2: 'Basic experience working in a Linux environment',
+    str3: 'Ability to self-learn, research documentation, and proactively solve problems',
+    expEye: 'My Journey', expTitle: 'Experience',
+    expRole1: 'IT Support Intern',
+    expDesc1: 'IT Support Intern – Công Ty TNHH Green TG – 3 months (2026)',
+    expRole2: 'Backend Developer Intern',
+    expDesc2: 'Backend Developer Intern – 365EJSC – 2 months',
+    expRole3: 'Student — Computer Networks',
+    expDesc3: 'Computer Networks major at HUTECH from January 2022 to April 2026. Focused on Linux administration, Cisco configuration, AWS cloud computing, and practical Python programming.',
+    projEye: 'What I Built', projTitle: 'Course Projects',
+    proj1Cat: 'IT Major Project',
+    proj1B1: 'Developed a Secure Conversation AI Chatbot system using Python and Claude Sonnet 3.5',
+    proj1B2: 'Implemented Guardrails mechanisms to detect and prevent prompt injection, harmful content, and sensitive data leakage (PII)',
+    proj1B3: 'Built logging and monitoring systems to oversee and optimize security performance',
+    proj1B4: 'Deployed the solution as a containerized application on AWS EC2 cloud infrastructure',
+    proj2Cat: 'Linux Operating System',
+    proj2B1: 'Built an Nginx Reverse Proxy system and a Web server cluster; Reverse Proxy Nginx server routes requests from clients',
+    proj2B2: 'High Availability &amp; Load Balancing — distributes traffic to Server 1 and Server 2 to ensure high availability',
+    proj2B3: 'Centralized Services: integrates infrastructure services such as DHCP, DNS, and FTP on a single gateway/proxy',
+    proj3Cat: 'Cloud Computing',
+    proj3B1: 'Securing Access: implemented monitoring and security controls',
+    proj3B2: 'Deployed AWS login monitoring using CloudTrail and CloudWatch to detect failed logins and automatically alert administrators',
+    contEye: 'Get In Touch', contTitle: 'Contact',
+    certEye: 'Certifications',
+    cert1Name: 'IT Talent Search 2025 — 10th Edition',
+    cert1Sub: '01/2026 · Participated — Certified by the Faculty',
+    cert2Name: 'English', cert2Sub: 'Foreign Language',
+    contInfoEye: 'Contact Info',
+    labelPhone2: 'Phone', labelEmail2: 'Email', labelAddr2: 'Address',
+    addrVal2: 'Hoang Van Thu Street, Ward 2, Tan Binh District, Ho Chi Minh City',
+    footerRight: 'HUTECH · Computer Networks',
+    marqueeText: 'Lê Hữu Trí - Review Profile',
+  },
+  vi: {
+    navHome: 'Trang Chủ', navAbout: 'Giới Thiệu', navSkills: 'Kỹ Năng',
+    navStrengths: 'Điểm Mạnh', navExp: 'Kinh Nghiệm', navProjects: 'Dự Án', navContact: 'Liên Hệ',
+    heroRole: 'Kỹ Sư Mạng &amp; Hạ Tầng Đám Mây',
+    labelName: 'Họ Tên', labelDob: 'Ngày Sinh', labelPhone: 'Điện Thoại',
+    labelAddress: 'Địa Chỉ', labelEmail: 'Email', labelEdu: 'Trường', labelMajor: 'Chuyên Ngành',
+    addrVal: 'Đường Hoàng Văn Thụ, Phường 2, Quận Tân Bình',
+    eduVal: 'ĐH Công Nghệ TP.HCM (HUTECH)', majorVal: 'Mạng Máy Tính',
+    openBadge: 'Đang Tìm Cơ Hội',
+    aboutEye: 'Về Tôi', aboutTitle: 'Giới Thiệu',
+    aboutP1: 'Sinh viên Công nghệ Thông tin chuyên ngành Mạng Máy Tính tại Trường Đại học Công nghệ TP.HCM (HUTECH), định hướng nghề nghiệp theo hướng Quản trị Hệ thống và Hạ tầng Đám mây.',
+    aboutP2: 'Có kiến thức và kinh nghiệm thực hành với hệ điều hành Linux và cấu hình thiết bị mạng Cisco.',
+    aboutP3: 'Tìm kiếm cơ hội áp dụng kiến thức học thuật, phát triển kỹ năng thực tế và đóng góp vào sự phát triển của tổ chức.',
+    statYears: 'Năm Học', statProjects: 'Dự Án', statIntern: 'Thực Tập', statTech: 'Công Nghệ',
+    skillsEye: 'Tôi Biết Gì', skillsTitle: 'Kỹ Năng',
+    strEye: 'Tôi Mang Lại Gì', strTitle: 'Điểm Mạnh',
+    str1: 'Kiến thức cơ bản về hệ thống mạng và các dịch vụ như DNS, DHCP và FTP',
+    str2: 'Kinh nghiệm cơ bản làm việc trong môi trường Linux',
+    str3: 'Khả năng tự học, nghiên cứu tài liệu và chủ động giải quyết vấn đề',
+    expEye: 'Hành Trình', expTitle: 'Kinh Nghiệm',
+    expRole1: 'Thực Tập Sinh IT Support',
+    expDesc1: 'Thực tập sinh IT Support – Công Ty TNHH Green TG – 3 tháng (2026)',
+    expRole2: 'Thực Tập Sinh Backend Developer',
+    expDesc2: 'Thực tập sinh Backend Developer – 365EJSC – 2 tháng',
+    expRole3: 'Sinh Viên — Mạng Máy Tính',
+    expDesc3: 'Chuyên ngành Mạng Máy Tính tại HUTECH từ tháng 01/2022 đến 04/2026. Tập trung vào quản trị Linux, cấu hình Cisco, điện toán đám mây AWS và lập trình Python thực tế.',
+    projEye: 'Những Gì Tôi Xây Dựng', projTitle: 'Dự Án Học Phần',
+    proj1Cat: 'Đồ Án Chuyên Ngành IT',
+    proj1B1: 'Phát triển hệ thống Chatbot AI an toàn sử dụng Python và Claude Sonnet 3.5',
+    proj1B2: 'Triển khai cơ chế Guardrails để phát hiện và ngăn chặn prompt injection, nội dung độc hại và rò rỉ dữ liệu nhạy cảm (PII)',
+    proj1B3: 'Xây dựng hệ thống logging và monitoring để giám sát và tối ưu hiệu suất bảo mật',
+    proj1B4: 'Triển khai giải pháp dưới dạng ứng dụng container hóa trên hạ tầng đám mây AWS EC2',
+    proj2Cat: 'Hệ Điều Hành Linux',
+    proj2B1: 'Xây dựng hệ thống Nginx Reverse Proxy và cụm Web server; Nginx đóng vai trò trung gian định tuyến yêu cầu từ client',
+    proj2B2: 'High Availability &amp; Load Balancing — phân phối lưu lượng đến Server 1 và Server 2 để đảm bảo tính sẵn sàng cao',
+    proj2B3: 'Dịch vụ tập trung: tích hợp các dịch vụ hạ tầng như DHCP, DNS và FTP trên một gateway/proxy duy nhất',
+    proj3Cat: 'Điện Toán Đám Mây',
+    proj3B1: 'Bảo mật truy cập: triển khai giám sát và kiểm soát bảo mật',
+    proj3B2: 'Triển khai giám sát đăng nhập AWS bằng CloudTrail và CloudWatch để phát hiện đăng nhập thất bại và tự động cảnh báo quản trị viên',
+    contEye: 'Liên Hệ', contTitle: 'Liên Hệ',
+    certEye: 'Chứng Chỉ',
+    cert1Name: 'Tìm Kiếm Tài Năng IT 2025 — Lần 10',
+    cert1Sub: '01/2026 · Tham gia — Được Khoa Xác Nhận',
+    cert2Name: 'Tiếng Anh', cert2Sub: 'Ngoại Ngữ',
+    contInfoEye: 'Thông Tin Liên Hệ',
+    labelPhone2: 'Điện Thoại', labelEmail2: 'Email', labelAddr2: 'Địa Chỉ',
+    addrVal2: 'Đường Hoàng Văn Thụ, Phường 2, Quận Tân Bình, TP. Hồ Chí Minh',
+    footerRight: 'HUTECH · Mạng Máy Tính',
+    marqueeText: 'Lê Hữu Trí - Xem Hồ Sơ',
+  }
+};
+
+let currentLang = 'en';
+
+function toggleLangMenu() {
+  const dd = document.getElementById('langDropdown');
+  dd.classList.toggle('open');
+}
+
+document.addEventListener('click', function(e) {
+  const wrap = document.querySelector('.lang-wrap');
+  if (wrap && !wrap.contains(e.target)) {
+    document.getElementById('langDropdown').classList.remove('open');
+  }
+});
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = translations[lang];
+
+  document.getElementById('langFlag').textContent = lang === 'en' ? '🇺🇸' : '🇻🇳';
+  document.getElementById('langLabel').textContent = lang === 'en' ? 'EN' : 'VI';
+  document.getElementById('check-en').style.display = lang === 'en' ? '' : 'none';
+  document.getElementById('check-vi').style.display = lang === 'vi' ? '' : 'none';
+  document.getElementById('langDropdown').classList.remove('open');
+
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const navKeys = ['navHome','navAbout','navSkills','navStrengths','navExp','navProjects','navContact'];
+  navLinks.forEach((a, i) => { if (navKeys[i]) a.textContent = t[navKeys[i]]; });
+
+  document.querySelector('.hero-role').innerHTML = t.heroRole;
+  document.querySelector('.open-badge').innerHTML = `<span class="open-dot"></span>${t.openBadge}`;
+
+  const labels = document.querySelectorAll('.info-label');
+  const vals   = document.querySelectorAll('.info-val');
+  const lk = ['labelName','labelDob','labelPhone','labelAddress','labelEmail','labelEdu','labelMajor'];
+  lk.forEach((k,i) => { if (labels[i]) labels[i].textContent = t[k]; });
+  if (vals[3]) vals[3].textContent = t.addrVal;
+  if (vals[4]) vals[4].innerHTML = `<a href="mailto:trile.1036@gmail.com">trile.1036@gmail.com</a>`;
+  if (vals[5]) vals[5].textContent = t.eduVal;
+  if (vals[6]) vals[6].textContent = t.majorVal;
+
+  setEyeTitle('#about', t.aboutEye, t.aboutTitle);
+  const ps = document.querySelectorAll('.about-text p');
+  if (ps[0]) ps[0].textContent = t.aboutP1;
+  if (ps[1]) ps[1].textContent = t.aboutP2;
+  if (ps[2]) ps[2].textContent = t.aboutP3;
+  const statLabels = document.querySelectorAll('.stat-label');
+  ['statYears','statProjects','statIntern','statTech'].forEach((k,i) => {
+    if (statLabels[i]) statLabels[i].textContent = t[k];
+  });
+
+  setEyeTitle('#skills', t.skillsEye, t.skillsTitle);
+
+  setEyeTitle('#strengths', t.strEye, t.strTitle);
+  const strItems = document.querySelectorAll('.strength-item');
+  [t.str1, t.str2, t.str3].forEach((s,i) => { if (strItems[i]) strItems[i].textContent = s; });
+
+  setEyeTitle('#experience', t.expEye, t.expTitle);
+  const roles = document.querySelectorAll('.exp-role');
+  const descs = document.querySelectorAll('.exp-desc');
+  if (roles[0]) roles[0].textContent = t.expRole1;
+  if (descs[0]) descs[0].textContent = t.expDesc1;
+  if (roles[1]) roles[1].textContent = t.expRole2;
+  if (descs[1]) descs[1].textContent = t.expDesc2;
+  if (roles[2]) roles[2].textContent = t.expRole3;
+  if (descs[2]) descs[2].textContent = t.expDesc3;
+
+  setEyeTitle('#portfolio', t.projEye, t.projTitle);
+  const cats = document.querySelectorAll('.proj-cat');
+  if (cats[0]) cats[0].textContent = t.proj1Cat;
+  if (cats[1]) cats[1].textContent = t.proj2Cat;
+  if (cats[2]) cats[2].textContent = t.proj3Cat;
+  const bullets = document.querySelectorAll('.proj-bullets');
+  if (bullets[0]) {
+    const li = bullets[0].querySelectorAll('li');
+    [t.proj1B1,t.proj1B2,t.proj1B3,t.proj1B4].forEach((b,i)=>{ if(li[i]) li[i].textContent=b; });
+  }
+  if (bullets[1]) {
+    const li = bullets[1].querySelectorAll('li');
+    [t.proj2B1,t.proj2B2,t.proj2B3].forEach((b,i)=>{ if(li[i]) li[i].innerHTML=b; });
+  }
+  if (bullets[2]) {
+    const li = bullets[2].querySelectorAll('li');
+    [t.proj3B1,t.proj3B2].forEach((b,i)=>{ if(li[i]) li[i].textContent=b; });
+  }
+
+  setEyeTitle('#contact', t.contEye, t.contTitle);
+  const secEyebrows = document.querySelectorAll('#contact .sec-eyebrow');
+  if (secEyebrows[1]) secEyebrows[1].textContent = t.certEye;
+  if (secEyebrows[2]) secEyebrows[2].textContent = t.contInfoEye;
+  const certNames = document.querySelectorAll('.cert-name');
+  const certSubs  = document.querySelectorAll('.cert-sub');
+  if (certNames[0]) certNames[0].textContent = t.cert1Name;
+  if (certSubs[0])  certSubs[0].textContent  = t.cert1Sub;
+  if (certNames[1]) certNames[1].textContent = t.cert2Name;
+  if (certSubs[1])  certSubs[1].textContent  = t.cert2Sub;
+  const cLabels = document.querySelectorAll('.c-label');
+  const cVals   = document.querySelectorAll('.c-val');
+  if (cLabels[0]) cLabels[0].textContent = t.labelPhone2;
+  if (cLabels[1]) cLabels[1].textContent = t.labelEmail2;
+  if (cLabels[2]) cLabels[2].textContent = t.labelAddr2;
+  if (cVals[2])   cVals[2].textContent   = t.addrVal2;
+
+  const fc = document.querySelectorAll('.footer-copy');
+  if (fc[1]) fc[1].textContent = t.footerRight;
+  const mq = document.querySelector('.marquee-wrap marquee');
+  if (mq) mq.textContent = t.marqueeText;
+}
+
+function setEyeTitle(sectionId, eye, title) {
+  const sec = document.querySelector(sectionId);
+  if (!sec) return;
+  const e = sec.querySelector('.sec-eyebrow');
+  const t = sec.querySelector('.sec-title');
+  if (e) e.textContent = eye;
+  if (t) t.textContent = title;
+}
+
+(function() {
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+  }, { passive: true });
+})();
+
+(function() {
+  const fills = document.querySelectorAll('.skill-bar-fill');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        fills.forEach(f => f.style.width = f.dataset.w);
+        obs.disconnect();
+      }
+    });
+  }, { threshold: 0.2 });
+  const s = document.getElementById('skills');
+  if (s) obs.observe(s);
+})();
+</script>
+</body>
+</html>
