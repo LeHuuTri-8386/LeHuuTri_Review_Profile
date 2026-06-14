@@ -196,18 +196,39 @@ nav {
   position: absolute;
   width: 340px; height: 340px;
   border-radius: 50%;
-  border: 1px solid rgba(26,188,156,0.12);
+  border: 1px dashed rgba(26,188,156,0.18);
   top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%) rotate(0deg);
+  animation: ring-spin 50s linear infinite;
 }
 .hero-right::after {
   content: '';
   position: absolute;
   width: 500px; height: 500px;
   border-radius: 50%;
-  border: 1px solid rgba(26,188,156,0.06);
+  border: 1px dashed rgba(26,188,156,0.08);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%) rotate(0deg);
+  animation: ring-spin-reverse 80s linear infinite;
+}
+@keyframes ring-spin {
+  to { transform: translate(-50%,-50%) rotate(360deg); }
+}
+@keyframes ring-spin-reverse {
+  to { transform: translate(-50%,-50%) rotate(-360deg); }
+}
+
+.radar-sweep {
+  position: absolute;
+  width: 500px; height: 500px;
   top: 50%; left: 50%;
   transform: translate(-50%,-50%);
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, rgba(26,188,156,0.22), transparent 30%, transparent 100%);
+  -webkit-mask: radial-gradient(circle, transparent 38%, #000 39%, #000 100%);
+          mask: radial-gradient(circle, transparent 38%, #000 39%, #000 100%);
+  animation: ring-spin 7s linear infinite;
+  pointer-events: none;
 }
 
 .portrait-wrap {
@@ -231,6 +252,7 @@ nav {
   bottom: -16px; right: -16px;
   width: 120px; height: 120px;
   border: 2px solid rgba(26,188,156,0.3);
+  animation: accent-glow 3s ease-in-out infinite;
 }
 .portrait-dots {
   position: absolute;
@@ -238,6 +260,46 @@ nav {
   width: 64px; height: 64px;
   background-image: radial-gradient(circle, rgba(26,188,156,0.5) 1px, transparent 1px);
   background-size: 9px 9px;
+  animation: dots-twinkle 3.2s ease-in-out infinite;
+}
+@keyframes accent-glow {
+  0%,100% { border-color: rgba(26,188,156,0.3); box-shadow: 0 0 0 rgba(26,188,156,0); }
+  50%     { border-color: rgba(26,188,156,0.75); box-shadow: 0 0 18px rgba(26,188,156,0.25); }
+}
+@keyframes dots-twinkle {
+  0%,100% { opacity: 0.45; }
+  50%     { opacity: 1; }
+}
+
+.scan-line {
+  position: absolute;
+  left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(26,188,156,0.95), transparent);
+  box-shadow: 0 0 10px rgba(26,188,156,0.7);
+  animation: scan-sweep 3.4s ease-in-out infinite;
+}
+@keyframes scan-sweep {
+  0%   { top: 0%;   opacity: 0; }
+  8%   { opacity: 1; }
+  50%  { top: 100%; opacity: 1; }
+  58%  { opacity: 0; }
+  100% { top: 0%;   opacity: 0; }
+}
+
+.hud-corner {
+  position: absolute;
+  width: 18px; height: 18px;
+  border: 2px solid var(--teal);
+  opacity: 0.35;
+  animation: hud-pulse 2.6s ease-in-out infinite;
+}
+.hud-corner--tl { top: -9px; left: -9px; border-right: none; border-bottom: none; }
+.hud-corner--tr { top: -9px; right: -9px; border-left: none; border-bottom: none; animation-delay: 0.4s; }
+.hud-corner--bl { bottom: -9px; left: -9px; border-right: none; border-top: none; animation-delay: 0.8s; }
+.hud-corner--br { bottom: -9px; right: -9px; border-left: none; border-top: none; animation-delay: 1.2s; }
+@keyframes hud-pulse {
+  0%,100% { opacity: 0.35; }
+  50%     { opacity: 1; }
 }
 .portrait-center {
   position: absolute; inset: 0;
@@ -625,6 +687,7 @@ footer {
   .portrait-dots { width: 48px; height: 48px; }
   .hero-right::before { width: 240px; height: 240px; }
   .hero-right::after { width: 340px; height: 340px; }
+  .radar-sweep { width: 340px; height: 340px; }
   .open-badge { font-size: 9px; padding: 7px 14px; }
 
   .container { padding: 0 20px; }
@@ -647,7 +710,18 @@ footer {
   .marquee-wrap { padding: 10px 20px; }
   .marquee-wrap marquee { font-size: 12px; padding: 6px 0; }
 }
-@media (prefers-reduced-motion: reduce) { .open-dot { animation: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .open-dot,
+  .hero-right::before,
+  .hero-right::after,
+  .radar-sweep,
+  .scan-line,
+  .hud-corner,
+  .portrait-accent,
+  .portrait-dots {
+    animation: none;
+  }
+}
 
 .lang-wrap { position: relative; }
 
@@ -774,12 +848,18 @@ footer {
     </div>
   </div>
   <div class="hero-right">
+    <div class="radar-sweep"></div>
     <div class="portrait-wrap">
       <div class="portrait-bg">
         <img src="https://raw.githubusercontent.com/LeHuuTri-8386/LeHuuTri_Review_Profile/refs/heads/main/LeHuuTri_Review_Profile.jpg" alt="Lê Hữu Trí">
+        <div class="scan-line"></div>
       </div>
       <div class="portrait-accent"></div>
       <div class="portrait-dots"></div>
+      <span class="hud-corner hud-corner--tl"></span>
+      <span class="hud-corner hud-corner--tr"></span>
+      <span class="hud-corner hud-corner--bl"></span>
+      <span class="hud-corner hud-corner--br"></span>
     </div>
     <div class="open-badge">
       <span class="open-dot"></span>
