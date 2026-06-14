@@ -565,6 +565,29 @@ nav {
 .c-val { font-size: 13px; color: var(--text); }
 .c-val a { color: var(--teal); text-decoration: none; }
 
+.c-qr {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.c-qr img {
+  width: 52px; height: 52px;
+  border: 1px solid var(--border);
+  background: #fff;
+  padding: 3px;
+  object-fit: contain;
+  display: block;
+}
+.c-qr-label {
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 footer {
   background: var(--dark);
   padding: 24px 60px;
@@ -694,6 +717,10 @@ footer {
   .section { padding: 48px 0; }
   .sec-title { font-size: 26px; }
   .sec-header { margin-bottom: 32px; }
+
+  .c-item { gap: 10px; }
+  .c-qr img { width: 44px; height: 44px; }
+  .c-qr-label { font-size: 7px; }
 
   .about-stats { gap: 2px; }
   .stat-box { padding: 20px 16px; }
@@ -1120,6 +1147,10 @@ footer {
             <div>
               <div class="c-label">Phone</div>
               <div class="c-val">0327 391 720</div>
+            </div>
+            <div class="c-qr">
+              <img src="https://raw.githubusercontent.com/LeHuuTri-8386/LeHuuTri_Review_Profile/57554eadbb2f4c47c02d5ee9603fe0f4d573934c/QR_Zalo.jpg" alt="Zalo QR Code">
+              <span class="c-qr-label">Zalo</span>
             </div>
           </div>
           <div class="c-item">
