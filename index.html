@@ -183,10 +183,48 @@ nav {
   margin-bottom: 48px;
 }
 
+.profile-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(26,188,156,0.55);
+  margin-bottom: 10px;
+}
+
+.info-panel {
+  position: relative;
+  clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+  background: linear-gradient(135deg, rgba(26,188,156,0.55), rgba(26,188,156,0.1));
+  filter: drop-shadow(0 0 18px rgba(26,188,156,0.12));
+}
+.info-panel-inner {
+  clip-path: polygon(21px 0, 100% 0, 100% calc(100% - 21px), calc(100% - 21px) 100%, 0 100%, 0 21px);
+  background: var(--dark);
+  margin: 1px;
+  padding: 22px 26px;
+}
+
 .info-table {
   display: grid;
   grid-template-columns: 110px 1fr;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  position: relative;
+}
+.info-table::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(26,188,156,0.65), transparent);
+  box-shadow: 0 0 10px rgba(26,188,156,0.5);
+  animation: table-scan 5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes table-scan {
+  0%   { top: 0%;   opacity: 0; }
+  10%  { opacity: 1; }
+  50%  { top: 100%; opacity: 1; }
+  60%  { opacity: 0; }
+  100% { top: 0%;   opacity: 0; }
 }
 .info-label {
   padding: 13px 0;
@@ -196,12 +234,47 @@ nav {
   text-transform: uppercase;
   color: rgba(255,255,255,0.3);
   border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+.info-label::before {
+  content: '';
+  display: inline-block;
+  width: 5px; height: 5px;
+  margin-right: 7px;
+  border-radius: 50%;
+  background: var(--teal);
+  vertical-align: middle;
+  animation: status-blink 2.4s ease-in-out infinite;
+}
+@keyframes status-blink {
+  0%, 100% { opacity: 0.3; box-shadow: 0 0 2px rgba(26,188,156,0.4); }
+  50%      { opacity: 1;   box-shadow: 0 0 6px rgba(26,188,156,0.9); }
+}
+.info-label:nth-of-type(3)::before  { animation-delay: 0s; }
+.info-label:nth-of-type(5)::before  { animation-delay: 0.3s; }
+.info-label:nth-of-type(7)::before  { animation-delay: 0.6s; }
+.info-label:nth-of-type(9)::before  { animation-delay: 0.9s; }
+.info-label:nth-of-type(11)::before { animation-delay: 1.2s; }
+.info-label:nth-of-type(13)::before { animation-delay: 1.5s; }
+.info-label:nth-of-type(15)::before { animation-delay: 1.8s; }
+.info-label:hover {
+  color: #fff;
+  border-color: rgba(26,188,156,0.35);
+  background: rgba(26,188,156,0.05);
 }
 .info-val {
   padding: 13px 0 13px 18px;
-  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.02em;
   color: rgba(255,255,255,0.82);
   border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+.info-val:hover {
+  color: #fff;
+  border-color: rgba(26,188,156,0.35);
+  background: rgba(26,188,156,0.05);
 }
 .info-val a { color: var(--teal); text-decoration: none; }
 
@@ -868,6 +941,12 @@ footer {
   .hero-left { padding: 40px 22px 36px; }
   .hi-badge { font-size: 10px; padding: 4px 12px; margin-bottom: 12px; }
   .hero-role { font-size: 11px; letter-spacing: 0.18em; margin-bottom: 28px; }
+  .profile-tag { font-size: 9px; letter-spacing: 0.15em; }
+  .info-panel { clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px); }
+  .info-panel-inner {
+    clip-path: polygon(13px 0, 100% 0, 100% calc(100% - 13px), calc(100% - 13px) 100%, 0 100%, 0 13px);
+    padding: 16px 16px;
+  }
   .info-table { grid-template-columns: 88px 1fr; }
   .info-label { font-size: 9px; padding: 11px 0; }
   .info-val { font-size: 12px; padding: 11px 0 11px 12px; }
@@ -919,7 +998,9 @@ footer {
   .timeline-dot::before,
   .timeline-dot::after,
   .exp-role::after,
-  .exp-tag {
+  .exp-tag,
+  .info-table::after,
+  .info-label::before {
     animation: none;
   }
 }
@@ -1107,21 +1188,28 @@ footer {
   <div class="hero-left">
     <div class="hi-badge">Hi !</div>
     <div class="hero-role">Network &amp; Cloud Infrastructure Engineer</div>
-    <div class="info-table">
-      <span class="info-label">Name</span>
-      <span class="info-val">Le Huu Tri</span>
-      <span class="info-label">DOB</span>
-      <span class="info-val">27/02/2004</span>
-      <span class="info-label">Phone</span>
-      <span class="info-val">0327 391 720</span>
-      <span class="info-label">Address</span>
-      <span class="info-val">Hoang Van Thu Street, Ward 2, Tan Binh District</span>
-      <span class="info-label">E-Mail</span>
-      <span class="info-val"><a href="mailto:trile.1036@gmail.com">trile.1036@gmail.com</a></span>
-      <span class="info-label">Education</span>
-      <span class="info-val">HUTECH University</span>
-      <span class="info-label">Major</span>
-      <span class="info-val">Computer Networks</span>
+    <div class="profile-tag">[ PROFILE_DATA ]</div>
+    <div class="info-panel">
+      <div class="info-panel-inner">
+        <div class="info-table">
+          <span class="hud-corner hud-corner--tr"></span>
+          <span class="hud-corner hud-corner--bl"></span>
+          <span class="info-label">Name</span>
+          <span class="info-val">Le Huu Tri</span>
+          <span class="info-label">DOB</span>
+          <span class="info-val">27/02/2004</span>
+          <span class="info-label">Phone</span>
+          <span class="info-val">0327 391 720</span>
+          <span class="info-label">Address</span>
+          <span class="info-val">Hoang Van Thu Street, Ward 2, Tan Binh District</span>
+          <span class="info-label">E-Mail</span>
+          <span class="info-val"><a href="mailto:trile.1036@gmail.com">trile.1036@gmail.com</a></span>
+          <span class="info-label">Education</span>
+          <span class="info-val">HUTECH University</span>
+          <span class="info-label">Major</span>
+          <span class="info-val">Computer Networks</span>
+        </div>
+      </div>
     </div>
   </div>
   <div class="hero-right">
