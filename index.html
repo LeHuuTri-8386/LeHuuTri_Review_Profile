@@ -369,7 +369,8 @@ nav {
   background: var(--panel);
   border-top: 3px solid transparent;
   padding: 28px 24px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.3s;
 }
 .stat-box:hover {
   border-color: var(--teal);
@@ -392,7 +393,8 @@ nav {
   background: var(--white);
   padding: 28px;
   border-bottom: 3px solid transparent;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.3s;
 }
 .skill-card:hover {
   border-color: var(--teal);
@@ -428,13 +430,35 @@ nav {
   border-bottom: 1px solid var(--border);
   display: flex; align-items: flex-start; gap: 14px;
   font-size: 14px; color: #5a6173; line-height: 1.7;
+  position: relative;
+  transition: transform 0.3s;
 }
 .strength-item::before {
   content: '›';
   color: var(--teal); font-size: 20px; line-height: 1.2; flex-shrink: 0;
 }
 
-#experience { background: var(--panel); }
+#experience {
+  background: var(--panel);
+  position: relative;
+  overflow: hidden;
+}
+#experience::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(26,188,156,0.55), transparent);
+  box-shadow: 0 0 12px rgba(26,188,156,0.4);
+  animation: section-scan 6s linear infinite;
+  pointer-events: none;
+}
+@keyframes section-scan {
+  0%   { top: 0%;   opacity: 0; }
+  5%   { opacity: 1; }
+  95%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
 
 .exp-grid { display: grid; grid-template-columns: 190px 1fr; gap: 0; }
 .exp-timeline { display: flex; flex-direction: column; position: relative; }
@@ -442,6 +466,22 @@ nav {
   content: '';
   position: absolute; right: 0; top: 0; bottom: 0;
   width: 1px; background: var(--border);
+}
+.timeline-pulse {
+  position: absolute;
+  right: -2px;
+  width: 5px; height: 70px;
+  background: linear-gradient(to bottom, transparent, var(--teal), transparent);
+  box-shadow: 0 0 8px rgba(26,188,156,0.8);
+  border-radius: 2px;
+  animation: timeline-flow 4.5s linear infinite;
+  pointer-events: none;
+}
+@keyframes timeline-flow {
+  0%   { top: -70px; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
 }
 .timeline-item {
   padding: 0 28px 44px 0;
@@ -459,6 +499,21 @@ nav {
   background: var(--teal); border: 2px solid var(--white);
   box-shadow: 0 0 0 2px var(--teal);
 }
+.timeline-dot::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 1px solid var(--teal);
+  animation: dot-ping 2.6s ease-out infinite;
+}
+.timeline-item:nth-child(1) .timeline-dot::after { animation-delay: 0s; }
+.timeline-item:nth-child(2) .timeline-dot::after { animation-delay: 0.6s; }
+.timeline-item:nth-child(3) .timeline-dot::after { animation-delay: 1.2s; }
+@keyframes dot-ping {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
 
 .exp-content { padding-left: 40px; }
 .exp-block { padding-bottom: 44px; }
@@ -466,6 +521,17 @@ nav {
 .exp-role {
   font-family: 'Barlow Condensed', sans-serif;
   font-size: 22px; font-weight: 700; color: var(--dark); margin-bottom: 10px;
+}
+.exp-role::after {
+  content: '_';
+  display: inline-block;
+  color: var(--teal);
+  margin-left: 6px;
+  animation: cursor-blink 1s step-end infinite;
+}
+@keyframes cursor-blink {
+  0%, 49%  { opacity: 1; }
+  50%,100% { opacity: 0; }
 }
 .exp-desc { font-size: 13px; color: #5a6173; line-height: 1.85; margin-bottom: 14px; }
 .exp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -475,6 +541,16 @@ nav {
   background: rgba(26,188,156,0.07);
   border: 1px solid rgba(26,188,156,0.22);
   color: var(--teal); letter-spacing: 0.06em;
+  animation: tag-glow 3.6s ease-in-out infinite;
+}
+.exp-tag:nth-child(1) { animation-delay: 0s; }
+.exp-tag:nth-child(2) { animation-delay: 0.4s; }
+.exp-tag:nth-child(3) { animation-delay: 0.8s; }
+.exp-tag:nth-child(4) { animation-delay: 1.2s; }
+@keyframes tag-glow {
+  0%, 100% { box-shadow: 0 0 0 rgba(26,188,156,0); border-color: rgba(26,188,156,0.22); }
+  15%      { box-shadow: 0 0 8px rgba(26,188,156,0.5); border-color: rgba(26,188,156,0.65); }
+  30%      { box-shadow: 0 0 0 rgba(26,188,156,0); border-color: rgba(26,188,156,0.22); }
 }
 
 #portfolio { background: var(--white); }
@@ -537,6 +613,8 @@ nav {
 .cert-item {
   padding: 18px 0; border-bottom: 1px solid var(--border);
   display: flex; align-items: flex-start; gap: 14px;
+  position: relative;
+  transition: transform 0.3s;
 }
 .cert-icon {
   width: 34px; height: 34px; flex-shrink: 0;
@@ -551,6 +629,8 @@ nav {
 .c-item {
   padding: 18px 0; border-bottom: 1px solid var(--border);
   display: flex; align-items: center; gap: 14px;
+  position: relative;
+  transition: transform 0.3s;
 }
 .c-icon {
   width: 34px; height: 34px; flex-shrink: 0;
@@ -663,6 +743,7 @@ footer {
   .exp-timeline, .exp-content { display: contents; }
   .exp-timeline::after { display: none; }
   .timeline-dot { display: none; }
+  .timeline-pulse { display: none; }
   .timeline-item {
     text-align: left;
     padding: 0 0 6px 0;
@@ -745,8 +826,89 @@ footer {
   .scan-line,
   .hud-corner,
   .portrait-accent,
-  .portrait-dots {
+  .portrait-dots,
+  #experience::before,
+  .timeline-pulse,
+  .timeline-dot::after,
+  .exp-role::after,
+  .exp-tag {
     animation: none;
+  }
+}
+
+/* Float Shadow */
+.hvr-float-shadow::before {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  top: 100%;
+  left: 5%;
+  height: 10px;
+  width: 90%;
+  opacity: 0;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  transition-duration: 0.3s;
+  transition-property: transform, opacity;
+}
+.hvr-float-shadow:hover,
+.hvr-float-shadow:focus,
+.hvr-float-shadow:active {
+  transform: translateY(-5px);
+}
+.hvr-float-shadow:hover::before,
+.hvr-float-shadow:focus::before,
+.hvr-float-shadow:active::before {
+  opacity: 1;
+  transform: translateY(5px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hvr-float-shadow,
+  .hvr-float-shadow::before {
+    transition: none;
+  }
+  .hvr-float-shadow:hover,
+  .hvr-float-shadow:focus,
+  .hvr-float-shadow:active {
+    transform: none;
+  }
+}
+
+/* Float Shadow (::after variant, for elements already using ::before) */
+.hvr-float-shadow-after::after {
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+  content: '';
+  top: 100%;
+  left: 5%;
+  height: 10px;
+  width: 90%;
+  opacity: 0;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+  transition-duration: 0.3s;
+  transition-property: transform, opacity;
+}
+.hvr-float-shadow-after:hover,
+.hvr-float-shadow-after:focus,
+.hvr-float-shadow-after:active {
+  transform: translateY(-5px);
+}
+.hvr-float-shadow-after:hover::after,
+.hvr-float-shadow-after:focus::after,
+.hvr-float-shadow-after:active::after {
+  opacity: 1;
+  transform: translateY(5px);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hvr-float-shadow-after,
+  .hvr-float-shadow-after::after {
+    transition: none;
+  }
+  .hvr-float-shadow-after:hover,
+  .hvr-float-shadow-after:focus,
+  .hvr-float-shadow-after:active {
+    transform: none;
   }
 }
 
@@ -909,19 +1071,19 @@ footer {
         <p>Seeking to apply for a staff position to leverage academic knowledge, develop practical skills, and contribute to the growth of the company.</p>
       </div>
       <div class="about-stats">
-        <div class="stat-box">
+        <div class="stat-box hvr-float-shadow">
           <div class="stat-num">4<span>+</span></div>
           <div class="stat-label">Years Study</div>
         </div>
-        <div class="stat-box">
+        <div class="stat-box hvr-float-shadow">
           <div class="stat-num">3<span>+</span></div>
           <div class="stat-label">Projects</div>
         </div>
-        <div class="stat-box">
+        <div class="stat-box hvr-float-shadow">
           <div class="stat-num">5<span>mo</span></div>
           <div class="stat-label">Internship</div>
         </div>
-        <div class="stat-box">
+        <div class="stat-box hvr-float-shadow">
           <div class="stat-num">8<span>+</span></div>
           <div class="stat-label">Technologies</div>
         </div>
@@ -938,7 +1100,7 @@ footer {
       <div class="sec-line"></div>
     </div>
     <div class="skills-grid">
-      <div class="skill-card">
+      <div class="skill-card hvr-float-shadow">
         <div class="skill-icon">☁</div>
         <div class="skill-name">AWS</div>
         <div class="skill-dots">
@@ -950,7 +1112,7 @@ footer {
         </div>
         <div class="skill-pct">2 / 5</div>
       </div>
-      <div class="skill-card">
+      <div class="skill-card hvr-float-shadow">
         <div class="skill-icon">🐧</div>
         <div class="skill-name">Linux Server Administration</div>
         <div class="skill-dots">
@@ -962,7 +1124,7 @@ footer {
         </div>
         <div class="skill-pct">2 / 5</div>
       </div>
-      <div class="skill-card">
+      <div class="skill-card hvr-float-shadow">
         <div class="skill-icon">🔌</div>
         <div class="skill-name">Cisco Device Configuration</div>
         <div class="skill-dots">
@@ -986,9 +1148,9 @@ footer {
       <div class="sec-line"></div>
     </div>
     <ul class="strength-list">
-      <li class="strength-item">Basic knowledge of network systems and services such as DNS, DHCP, and FTP</li>
-      <li class="strength-item">Basic experience working in a Linux environment</li>
-      <li class="strength-item">Ability to self-learn, research documentation, and proactively solve problems</li>
+      <li class="strength-item hvr-float-shadow-after">Basic knowledge of network systems and services such as DNS, DHCP, and FTP</li>
+      <li class="strength-item hvr-float-shadow-after">Basic experience working in a Linux environment</li>
+      <li class="strength-item hvr-float-shadow-after">Ability to self-learn, research documentation, and proactively solve problems</li>
     </ul>
   </div>
 </section>
@@ -1002,6 +1164,7 @@ footer {
     </div>
     <div class="exp-grid">
       <div class="exp-timeline">
+        <div class="timeline-pulse"></div>
         <div class="timeline-item">
           <div class="t-date">2026</div>
           <div class="t-org">Green TG</div>
@@ -1123,14 +1286,14 @@ footer {
       <div>
         <div class="sec-eyebrow" style="margin-bottom:20px">Certifications</div>
         <ul class="cert-list">
-          <li class="cert-item">
+          <li class="cert-item hvr-float-shadow">
             <div class="cert-icon">🏆</div>
             <div>
               <div class="cert-name">IT Talent Search 2025 — 10th Edition</div>
               <div class="cert-sub">01/2026 · Participated — Certified by the Faculty</div>
             </div>
           </li>
-          <li class="cert-item">
+          <li class="cert-item hvr-float-shadow">
             <div class="cert-icon">🌐</div>
             <div>
               <div class="cert-name">English</div>
@@ -1142,7 +1305,7 @@ footer {
       <div>
         <div class="sec-eyebrow" style="margin-bottom:20px">Contact Info</div>
         <div class="contact-items">
-          <div class="c-item">
+          <div class="c-item hvr-float-shadow">
             <div class="c-icon">📞</div>
             <div>
               <div class="c-label">Phone</div>
@@ -1153,14 +1316,14 @@ footer {
               <span class="c-qr-label">Zalo</span>
             </div>
           </div>
-          <div class="c-item">
-            <div class="c-icon">✉️</div>
+          <div class="c-item hvr-float-shadow">
+            <div class="c-icon">✉</div>
             <div>
               <div class="c-label">Email</div>
               <div class="c-val"><a href="mailto:trile.1036@gmail.com">trile.1036@gmail.com</a></div>
             </div>
           </div>
-          <div class="c-item">
+          <div class="c-item hvr-float-shadow">
             <div class="c-icon">📍</div>
             <div>
               <div class="c-label">Address</div>
