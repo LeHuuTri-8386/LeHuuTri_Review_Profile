@@ -711,56 +711,192 @@ nav {
   30%      { box-shadow: 0 0 0 rgba(26,188,156,0); border-color: rgba(26,188,156,0.22); }
 }
 
-#portfolio { background: var(--white); }
+#portfolio {
+  background: #0d0f11;
+  position: relative;
+  overflow: hidden;
+}
+#portfolio::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(26,188,156,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26,188,156,0.04) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+}
 
-.proj-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+/* Section heading color override for dark bg */
+#portfolio .sec-eyebrow { color: var(--teal); }
+#portfolio .sec-title   { color: #ffffff; }
+#portfolio .sec-line    { background: var(--teal); }
+
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+
 .proj-card {
-  background: var(--panel);
-  padding: 28px;
-  border-top: 3px solid var(--border);
-  position: relative; overflow: hidden;
-  transition: border-color 0.22s, box-shadow 0.22s;
+  background: rgba(10,14,18,0.92);
+  padding: 0;
+  border-top: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 .proj-card:hover {
-  border-color: var(--teal);
-  box-shadow: 0 6px 28px rgba(26,188,156,0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 0 40px rgba(26,188,156,0.18), 0 0 80px rgba(26,188,156,0.06);
 }
+
+/* Angular border glow overlay */
+.proj-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+  border: 1px solid rgba(26,188,156,0.2);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  pointer-events: none;
+  z-index: 10;
+}
+.proj-card:hover::after {
+  border-color: rgba(26,188,156,0.65);
+  box-shadow: inset 0 0 20px rgba(26,188,156,0.06);
+}
+
+/* Ghost number watermark */
 .proj-card::before {
   content: attr(data-num);
-  position: absolute; top: 10px; right: 18px;
+  position: absolute; top: 8px; right: 16px;
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 60px; font-weight: 700;
-  color: rgba(0,0,0,0.03); line-height: 1;
+  font-size: 72px; font-weight: 700;
+  color: rgba(26,188,156,0.04); line-height: 1;
+  z-index: 0;
+  transition: color 0.3s;
 }
+.proj-card:hover::before { color: rgba(26,188,156,0.09); }
+
+/* Binary rain background */
+.proj-binary {
+  position: absolute;
+  inset: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  line-height: 1.55;
+  letter-spacing: 0.08em;
+  color: rgba(26,188,156,0.055);
+  word-break: break-all;
+  overflow: hidden;
+  padding: 6px;
+  pointer-events: none;
+  z-index: 0;
+  transition: color 0.4s;
+  user-select: none;
+}
+.proj-card:hover .proj-binary {
+  color: rgba(26,188,156,0.14);
+}
+
+/* Scan beam on hover */
+.proj-scan {
+  position: absolute;
+  left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(26,188,156,0.85), transparent);
+  box-shadow: 0 0 12px rgba(26,188,156,0.7), 0 0 24px rgba(26,188,156,0.3);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+  top: 0;
+}
+.proj-card:hover .proj-scan {
+  animation: scan-sweep 2.2s ease-in-out infinite;
+}
+
+/* Inner content wrapper */
+.proj-inner {
+  position: relative;
+  z-index: 2;
+  padding: 26px 26px 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Status bar at top */
+.proj-status-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(26,188,156,0.12);
+}
+.proj-status-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--teal);
+  flex-shrink: 0;
+  animation: status-blink 2.4s ease-in-out infinite;
+}
+.proj-status-dot:nth-child(2) { animation-delay: 0.3s; background: rgba(26,188,156,0.4); }
+.proj-status-dot:nth-child(3) { animation-delay: 0.6s; background: rgba(26,188,156,0.2); }
+.proj-status-id {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  color: rgba(26,188,156,0.4);
+  letter-spacing: 0.15em;
+  margin-left: auto;
+}
+
 .proj-num {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px; color: var(--teal); letter-spacing: 0.1em; margin-bottom: 10px;
+  font-size: 9px; color: rgba(26,188,156,0.6); letter-spacing: 0.12em; margin-bottom: 8px;
+  position: relative; z-index: 1;
 }
 .proj-name {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 20px; font-weight: 700; color: var(--dark);
-  line-height: 1.2; margin-bottom: 6px;
+  font-size: 20px; font-weight: 700; color: #e8edf2;
+  line-height: 1.2; margin-bottom: 4px;
+  position: relative; z-index: 1;
+  transition: color 0.25s, text-shadow 0.25s;
+}
+.proj-card:hover .proj-name {
+  color: #fff;
+  text-shadow: 0 0 16px rgba(26,188,156,0.4);
 }
 .proj-cat {
-  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--muted); margin-bottom: 16px; padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--teal); opacity: 0.55;
+  margin-bottom: 14px; padding-bottom: 14px;
+  border-bottom: 1px solid rgba(26,188,156,0.12);
+  position: relative; z-index: 1;
 }
-.proj-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+.proj-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; position: relative; z-index: 1; }
 .proj-bullets li {
-  font-size: 12px; color: #5a6173;
-  padding-left: 14px; position: relative; line-height: 1.6;
+  font-size: 11.5px; color: rgba(255,255,255,0.5);
+  padding-left: 16px; position: relative; line-height: 1.6;
 }
 .proj-bullets li::before {
   content: '›'; position: absolute; left: 0;
   color: var(--teal); font-size: 14px; line-height: 1.3;
 }
-.proj-stack { display: flex; flex-wrap: wrap; gap: 5px; }
+.proj-stack { display: flex; flex-wrap: wrap; gap: 5px; position: relative; z-index: 1; margin-top: auto; }
 .stack-tag {
   font-family: 'JetBrains Mono', monospace; font-size: 8px;
-  padding: 3px 8px;
-  background: var(--white); border: 1px solid var(--border);
-  color: var(--muted); letter-spacing: 0.05em;
+  padding: 3px 9px;
+  background: rgba(26,188,156,0.06);
+  border: 1px solid rgba(26,188,156,0.2);
+  color: var(--teal); letter-spacing: 0.08em;
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.proj-card:hover .stack-tag {
+  background: rgba(26,188,156,0.1);
+  border-color: rgba(26,188,156,0.4);
+  box-shadow: 0 0 6px rgba(26,188,156,0.2);
 }
 
 #contact { background: var(--panel); }
@@ -974,8 +1110,9 @@ footer {
   .stat-num { font-size: 32px; }
 
   .skill-card { padding: 20px; }
-  .proj-card { padding: 20px; }
-  .proj-card::before { font-size: 44px; }
+  .proj-card { clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px); }
+  .proj-card::after { clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px); }
+  .proj-inner { padding: 18px 16px; }
   .proj-name { font-size: 18px; }
 
   .exp-role { font-size: 19px; }
@@ -1399,52 +1536,88 @@ footer {
     </div>
     <div class="proj-grid">
       <div class="proj-card" data-num="01">
-        <div class="proj-num">01 · Information Technology Major Projects</div>
-        <div class="proj-name">Secure Conversation AI with Guardrails</div>
-        <div class="proj-cat">IT Major Project</div>
-        <ul class="proj-bullets">
-          <li>Developed a Secure Conversation AI Chatbot system using Python and Claude Sonnet 3.5</li>
-          <li>Implemented Guardrails mechanisms (Guardrails AI, Claude Sonnet 3.5) to detect and prevent prompt injection, harmful content, and sensitive data leakage (PII)</li>
-          <li>Built logging and monitoring systems to oversee and optimize security performance</li>
-          <li>Deployed the solution as a containerized application on AWS EC2 cloud infrastructure</li>
-        </ul>
-        <div class="proj-stack">
-          <span class="stack-tag">Python</span>
-          <span class="stack-tag">Claude 3.5</span>
-          <span class="stack-tag">AWS EC2</span>
-          <span class="stack-tag">Docker</span>
-          <span class="stack-tag">Guardrails AI</span>
+        <div class="proj-binary">10110100 01101001 00110101 10010110 01001011 01100101 10110100 01101001 00110101 10010110 01001011 01100101 10110100 01101001 00110101 10010110 01001011 01100101 10110100 01101001 00110101 10010110 01001011 01100101 10110100 01101001 00110101 10010110 01001011 01100101 10110100 01101001 00110101 10010110 01001011 01100101 10110100 01101001 00110101 10010110 01001011 01100101 10110100 01101001 00110101 10010110 01001011 01100101 10110100 01101001 00110101 10010110 01001011 01100101 10110100 01101001 00110101 10010110 01001011 01100101 10110100 01101001 00110101 10010110 01001011 01100101 10110100 01101001 00110101 10010110 01001011 01100101 10110100 01101001 00110101 10010110 01001011 01100101 10110100 01101001 00110101 10010110 01001011 01100101</div>
+        <div class="proj-scan"></div>
+        <span class="hud-corner hud-corner--tl"></span>
+        <span class="hud-corner hud-corner--br"></span>
+        <div class="proj-inner">
+          <div class="proj-status-bar">
+            <span class="proj-status-dot"></span>
+            <span class="proj-status-dot"></span>
+            <span class="proj-status-dot"></span>
+            <span class="proj-status-id">SYS::AI_SECURE</span>
+          </div>
+          <div class="proj-num">01 · Information Technology Major Projects</div>
+          <div class="proj-name">Secure Conversation AI with Guardrails</div>
+          <div class="proj-cat">IT Major Project</div>
+          <ul class="proj-bullets">
+            <li>Developed a Secure Conversation AI Chatbot system using Python and Claude Sonnet 3.5</li>
+            <li>Implemented Guardrails mechanisms (Guardrails AI, Claude Sonnet 3.5) to detect and prevent prompt injection, harmful content, and sensitive data leakage (PII)</li>
+            <li>Built logging and monitoring systems to oversee and optimize security performance</li>
+            <li>Deployed the solution as a containerized application on AWS EC2 cloud infrastructure</li>
+          </ul>
+          <div class="proj-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">Claude 3.5</span>
+            <span class="stack-tag">AWS EC2</span>
+            <span class="stack-tag">Docker</span>
+            <span class="stack-tag">Guardrails AI</span>
+          </div>
         </div>
       </div>
       <div class="proj-card" data-num="02">
-        <div class="proj-num">02 · Linux Operating System</div>
-        <div class="proj-name">Nginx Reverse Proxy &amp; Web Server Cluster</div>
-        <div class="proj-cat">Linux Operating System</div>
-        <ul class="proj-bullets">
-          <li>Built an Nginx Reverse Proxy system and a Web server cluster; Reverse Proxy Nginx server acts as an intermediary to route requests from clients</li>
-          <li>High Availability &amp; Load Balancing — distributes traffic to Server 1 and Server 2 to ensure high availability</li>
-          <li>Centralized Services: integrates infrastructure services such as DHCP, DNS, and FTP on a single gateway/proxy</li>
-        </ul>
-        <div class="proj-stack">
-          <span class="stack-tag">Linux</span>
-          <span class="stack-tag">Nginx</span>
-          <span class="stack-tag">DHCP</span>
-          <span class="stack-tag">DNS</span>
-          <span class="stack-tag">FTP</span>
+        <div class="proj-binary">01001110 01100111 01101001 01101110 01111000 10110010 01001110 01100111 01101001 01101110 01111000 10110010 01001110 01100111 01101001 01101110 01111000 10110010 01001110 01100111 01101001 01101110 01111000 10110010 01001110 01100111 01101001 01101110 01111000 10110010 01001110 01100111 01101001 01101110 01111000 10110010 01001110 01100111 01101001 01101110 01111000 10110010 01001110 01100111 01101001 01101110 01111000 10110010 01001110 01100111 01101001 01101110 01111000 10110010 01001110 01100111 01101001 01101110 01111000 10110010 01001110 01100111 01101001 01101110 01111000 10110010 01001110 01100111 01101001 01101110 01111000 10110010 01001110 01100111 01101001 01101110 01111000 10110010 01001110 01100111 01101001 01101110 01111000 10110010</div>
+        <div class="proj-scan"></div>
+        <span class="hud-corner hud-corner--tl"></span>
+        <span class="hud-corner hud-corner--br"></span>
+        <div class="proj-inner">
+          <div class="proj-status-bar">
+            <span class="proj-status-dot"></span>
+            <span class="proj-status-dot"></span>
+            <span class="proj-status-dot"></span>
+            <span class="proj-status-id">SYS::LINUX_NET</span>
+          </div>
+          <div class="proj-num">02 · Linux Operating System</div>
+          <div class="proj-name">Nginx Reverse Proxy &amp; Web Server Cluster</div>
+          <div class="proj-cat">Linux Operating System</div>
+          <ul class="proj-bullets">
+            <li>Built an Nginx Reverse Proxy system and a Web server cluster; Reverse Proxy Nginx server acts as an intermediary to route requests from clients</li>
+            <li>High Availability &amp; Load Balancing — distributes traffic to Server 1 and Server 2 to ensure high availability</li>
+            <li>Centralized Services: integrates infrastructure services such as DHCP, DNS, and FTP on a single gateway/proxy</li>
+          </ul>
+          <div class="proj-stack">
+            <span class="stack-tag">Linux</span>
+            <span class="stack-tag">Nginx</span>
+            <span class="stack-tag">DHCP</span>
+            <span class="stack-tag">DNS</span>
+            <span class="stack-tag">FTP</span>
+          </div>
         </div>
       </div>
       <div class="proj-card" data-num="03">
-        <div class="proj-num">03 · Cloud Computing</div>
-        <div class="proj-name">Cloud Access Security &amp; Monitoring</div>
-        <div class="proj-cat">Cloud Computing</div>
-        <ul class="proj-bullets">
-          <li>Securing Access: implemented monitoring and security controls</li>
-          <li>Deployed AWS login monitoring using Cloud Trail and CloudWatch to detect failed logins and automatically alert administrators to prevent unauthorized access</li>
-        </ul>
-        <div class="proj-stack">
-          <span class="stack-tag">AWS CloudTrail</span>
-          <span class="stack-tag">CloudWatch</span>
-          <span class="stack-tag">IAM</span>
+        <div class="proj-binary">01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100 01000001 01010111 01010011 11001100</div>
+        <div class="proj-scan"></div>
+        <span class="hud-corner hud-corner--tl"></span>
+        <span class="hud-corner hud-corner--br"></span>
+        <div class="proj-inner">
+          <div class="proj-status-bar">
+            <span class="proj-status-dot"></span>
+            <span class="proj-status-dot"></span>
+            <span class="proj-status-dot"></span>
+            <span class="proj-status-id">SYS::CLOUD_SEC</span>
+          </div>
+          <div class="proj-num">03 · Cloud Computing</div>
+          <div class="proj-name">Cloud Access Security &amp; Monitoring</div>
+          <div class="proj-cat">Cloud Computing</div>
+          <ul class="proj-bullets">
+            <li>Securing Access: implemented monitoring and security controls</li>
+            <li>Deployed AWS login monitoring using Cloud Trail and CloudWatch to detect failed logins and automatically alert administrators to prevent unauthorized access</li>
+          </ul>
+          <div class="proj-stack">
+            <span class="stack-tag">AWS CloudTrail</span>
+            <span class="stack-tag">CloudWatch</span>
+            <span class="stack-tag">IAM</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1786,6 +1959,27 @@ function setEyeTitle(sectionId, eye, title) {
   }, { threshold: 0.2 });
   const s = document.getElementById('skills');
   if (s) obs.observe(s);
+})();
+
+/* Binary rain mutation for project cards */
+(function() {
+  const chars = '01';
+  function mutate(el) {
+    const len = el.textContent.replace(/\s/g,'').length || 320;
+    let out = '';
+    for (let i = 0; i < len; i++) {
+      out += chars[Math.random() < 0.5 ? 0 : 1];
+      if ((i + 1) % 8 === 0) out += ' ';
+      if ((i + 1) % 64 === 0) out += '\n';
+    }
+    el.textContent = out;
+  }
+  function tick() {
+    document.querySelectorAll('.proj-binary').forEach(el => {
+      if (Math.random() < 0.35) mutate(el);
+    });
+  }
+  setInterval(tick, 800);
 })();
 </script>
 </body>
