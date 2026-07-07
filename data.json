@@ -7,11 +7,27 @@
     "email": "trile.1036@gmail.com"
   },
   "en": {
-    "nav": { "home": "Home", "about": "About", "skills": "Skills", "strengths": "Strengths", "experience": "Experience", "projects": "Projects", "contact": "Contact" },
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "skills": "Skills",
+      "strengths": "Strengths",
+      "experience": "Experience",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
     "hero": {
       "role": "Network & Cloud Infrastructure Engineer",
       "openBadge": "Open to Opportunities",
-      "labels": { "name": "Name", "dob": "DOB", "phone": "Phone", "address": "Address", "email": "E-Mail", "education": "Education", "major": "Major" },
+      "labels": {
+        "name": "Name",
+        "dob": "DOB",
+        "phone": "Phone",
+        "address": "Address",
+        "email": "E-Mail",
+        "education": "Education",
+        "major": "Major"
+      },
       "name": "Le Huu Tri",
       "address": "Hoang Van Thu Street, Ward 2, Tan Binh District",
       "education": "HUTECH University",
@@ -27,18 +43,46 @@
       ]
     },
     "stats": [
-      { "num": "4", "suffix": "+", "label": "Years Study" },
-      { "num": "3", "suffix": "+", "label": "Projects" },
-      { "num": "5", "suffix": "mo", "label": "Internship" },
-      { "num": "8", "suffix": "+", "label": "Technologies" }
+      {
+        "num": "4",
+        "suffix": "+",
+        "label": "Years Study"
+      },
+      {
+        "num": "3",
+        "suffix": "+",
+        "label": "Projects"
+      },
+      {
+        "num": "5",
+        "suffix": "mo",
+        "label": "Internship"
+      },
+      {
+        "num": "8",
+        "suffix": "+",
+        "label": "Technologies"
+      }
     ],
     "skills": {
       "eyebrow": "What I Know",
       "title": "Skills",
       "items": [
-        { "icon": "☁", "name": "AWS", "level": 2 },
-        { "icon": "🐧", "name": "Linux Server Administration", "level": 2 },
-        { "icon": "🔌", "name": "Cisco Device Configuration", "level": 2 }
+        {
+          "icon": "☁",
+          "name": "AWS",
+          "level": 2
+        },
+        {
+          "icon": "🐧",
+          "name": "Linux Server Administration",
+          "level": 2
+        },
+        {
+          "icon": "🔌",
+          "name": "Cisco Device Configuration",
+          "level": 2
+        }
       ]
     },
     "strengths": {
@@ -54,9 +98,39 @@
       "eyebrow": "My Journey",
       "title": "Experience",
       "items": [
-        { "date": "2026", "org": "Green TG", "role": "IT Support Intern", "desc": "IT Support Intern – Công Ty TNHH Green TG – 3 months (2026)", "tags": ["IT Support", "Green TG", "3 Months"] },
-        { "date": "2026", "org": "365EJSC", "role": "Backend Developer Intern", "desc": "Backend Developer Intern – 365EJSC – 2 months", "tags": ["Backend", "C#", "2 Months"] },
-        { "date": "01/2022", "org": "HUTECH", "role": "Student — Computer Networks", "desc": "Computer Networks major at HUTECH from January 2022 to April 2026. Focused on Linux administration, Cisco configuration, AWS cloud computing, and practical Python programming.", "tags": ["HUTECH", "Networking", "2022 – 2026"] }
+        {
+          "date": "2026",
+          "org": "Green TG",
+          "role": "IT Support Intern",
+          "desc": "IT Support Intern – Công Ty TNHH Green TG – 3 months (2026)",
+          "tags": [
+            "IT Support",
+            "Green TG",
+            "3 Months"
+          ]
+        },
+        {
+          "date": "2026",
+          "org": "365EJSC",
+          "role": "Backend Developer Intern",
+          "desc": "Backend Developer Intern – 365EJSC – 2 months",
+          "tags": [
+            "Backend",
+            "C#",
+            "2 Months"
+          ]
+        },
+        {
+          "date": "01/2022",
+          "org": "HUTECH",
+          "role": "Student — Computer Networks",
+          "desc": "Computer Networks major at HUTECH from January 2022 to April 2026. Focused on Linux administration, Cisco configuration, AWS cloud computing, and practical Python programming.",
+          "tags": [
+            "HUTECH",
+            "Networking",
+            "2022 – 2026"
+          ]
+        }
       ]
     },
     "projects": {
@@ -74,7 +148,13 @@
             "Built logging and monitoring systems to oversee and optimize security performance",
             "Deployed the solution as a containerized application on AWS EC2 cloud infrastructure"
           ],
-          "stack": ["Python", "Claude 3.5", "AWS EC2", "Docker", "Guardrails AI"]
+          "stack": [
+            "Python",
+            "Claude 3.5",
+            "AWS EC2",
+            "Docker",
+            "Guardrails AI"
+          ]
         },
         {
           "num": "02 · Linux Operating System",
@@ -86,7 +166,13 @@
             "High Availability & Load Balancing — distributes traffic to Server 1 and Server 2 to ensure high availability",
             "Centralized Services: integrates infrastructure services such as DHCP, DNS, and FTP on a single gateway/proxy"
           ],
-          "stack": ["Linux", "Nginx", "DHCP", "DNS", "FTP"]
+          "stack": [
+            "Linux",
+            "Nginx",
+            "DHCP",
+            "DNS",
+            "FTP"
+          ]
         },
         {
           "num": "03 · Cloud Computing",
@@ -97,7 +183,11 @@
             "Securing Access: implemented monitoring and security controls",
             "Deployed AWS login monitoring using Cloud Trail and CloudWatch to detect failed logins and automatically alert administrators to prevent unauthorized access"
           ],
-          "stack": ["AWS CloudTrail", "CloudWatch", "IAM"]
+          "stack": [
+            "AWS CloudTrail",
+            "CloudWatch",
+            "IAM"
+          ]
         }
       ]
     },
@@ -106,22 +196,50 @@
       "title": "Contact",
       "certEye": "Certifications",
       "contInfoEye": "Contact Info",
-      "labels": { "phone": "Phone", "email": "Email", "address": "Address" },
+      "labels": {
+        "phone": "Phone",
+        "email": "Email",
+        "address": "Address"
+      },
       "addressFull": "Hoang Van Thu Street, Ward 2, Tan Binh District, Ho Chi Minh City",
       "certs": [
-        { "icon": "🏆", "name": "IT Talent Search 2025 — 10th Edition", "sub": "01/2026 · Participated — Certified by the Faculty" },
-        { "icon": "🌐", "name": "VSTEP English Certificate (B1)", "sub": "Foreign Language" }
+        {
+          "icon": "🏆",
+          "name": "IT Talent Search 2025 — 10th Edition",
+          "sub": "01/2026 · Participated — Certified by the Faculty"
+        },
+        {
+          "icon": "🌐",
+          "name": "VSTEP English Certificate (B1)",
+          "sub": "Foreign Language"
+        }
       ]
     },
     "footerRight": "HUTECH · Computer Networks",
     "marquee": "Lê Hữu Trí - Review Profile"
   },
   "vi": {
-    "nav": { "home": "Trang Chủ", "about": "Giới Thiệu", "skills": "Kỹ Năng", "strengths": "Điểm Mạnh", "experience": "Kinh Nghiệm", "projects": "Dự Án", "contact": "Liên Hệ" },
+    "nav": {
+      "home": "Trang Chủ",
+      "about": "Giới Thiệu",
+      "skills": "Kỹ Năng",
+      "strengths": "Điểm Mạnh",
+      "experience": "Kinh Nghiệm",
+      "projects": "Dự Án",
+      "contact": "Liên Hệ"
+    },
     "hero": {
       "role": "Kỹ Sư Mạng & Hạ Tầng Đám Mây",
       "openBadge": "Đang Tìm Cơ Hội",
-      "labels": { "name": "Họ Tên", "dob": "Ngày Sinh", "phone": "Điện Thoại", "address": "Địa Chỉ", "email": "Email", "education": "Trường", "major": "Chuyên Ngành" },
+      "labels": {
+        "name": "Họ Tên",
+        "dob": "Ngày Sinh",
+        "phone": "Điện Thoại",
+        "address": "Địa Chỉ",
+        "email": "Email",
+        "education": "Trường",
+        "major": "Chuyên Ngành"
+      },
       "name": "Lê Hữu Trí",
       "address": "Đường Hoàng Văn Thụ, Phường 2, Quận Tân Bình",
       "education": "ĐH Công Nghệ TP.HCM (HUTECH)",
@@ -137,18 +255,46 @@
       ]
     },
     "stats": [
-      { "num": "4", "suffix": "+", "label": "Năm Học" },
-      { "num": "3", "suffix": "+", "label": "Dự Án" },
-      { "num": "5", "suffix": "tháng", "label": "Thực Tập" },
-      { "num": "8", "suffix": "+", "label": "Công Nghệ" }
+      {
+        "num": "4",
+        "suffix": "+",
+        "label": "Năm Học"
+      },
+      {
+        "num": "3",
+        "suffix": "+",
+        "label": "Dự Án"
+      },
+      {
+        "num": "5",
+        "suffix": "tháng",
+        "label": "Thực Tập"
+      },
+      {
+        "num": "8",
+        "suffix": "+",
+        "label": "Công Nghệ"
+      }
     ],
     "skills": {
       "eyebrow": "Tôi Biết Gì",
       "title": "Kỹ Năng",
       "items": [
-        { "icon": "☁", "name": "AWS", "level": 2 },
-        { "icon": "🐧", "name": "Quản Trị Server Linux", "level": 2 },
-        { "icon": "🔌", "name": "Cấu Hình Thiết Bị Cisco", "level": 2 }
+        {
+          "icon": "☁",
+          "name": "AWS",
+          "level": 2
+        },
+        {
+          "icon": "🐧",
+          "name": "Quản Trị Server Linux",
+          "level": 2
+        },
+        {
+          "icon": "🔌",
+          "name": "Cấu Hình Thiết Bị Cisco",
+          "level": 2
+        }
       ]
     },
     "strengths": {
@@ -164,9 +310,39 @@
       "eyebrow": "Hành Trình",
       "title": "Kinh Nghiệm",
       "items": [
-        { "date": "2026", "org": "Green TG", "role": "Thực Tập Sinh IT Support", "desc": "Thực tập sinh IT Support – Công Ty TNHH Green TG – 3 tháng (2026)", "tags": ["IT Support", "Green TG", "3 Tháng"] },
-        { "date": "2026", "org": "365EJSC", "role": "Thực Tập Sinh Backend Developer", "desc": "Thực tập sinh Backend Developer – 365EJSC – 2 tháng", "tags": ["Backend", "C#", "2 Tháng"] },
-        { "date": "01/2022", "org": "HUTECH", "role": "Sinh Viên — Mạng Máy Tính", "desc": "Chuyên ngành Mạng Máy Tính tại HUTECH từ tháng 01/2022 đến 04/2026. Tập trung vào quản trị Linux, cấu hình Cisco, điện toán đám mây AWS và lập trình Python thực tế.", "tags": ["HUTECH", "Networking", "2022 – 2026"] }
+        {
+          "date": "2026",
+          "org": "Green TG",
+          "role": "Thực Tập Sinh IT Support",
+          "desc": "Thực tập sinh IT Support – Công Ty TNHH Green TG – 3 tháng (2026)",
+          "tags": [
+            "IT Support",
+            "Green TG",
+            "3 Tháng"
+          ]
+        },
+        {
+          "date": "2026",
+          "org": "365EJSC",
+          "role": "Thực Tập Sinh Backend Developer",
+          "desc": "Thực tập sinh Backend Developer – 365EJSC – 2 tháng",
+          "tags": [
+            "Backend",
+            "C#",
+            "2 Tháng"
+          ]
+        },
+        {
+          "date": "01/2022",
+          "org": "HUTECH",
+          "role": "Sinh Viên — Mạng Máy Tính",
+          "desc": "Chuyên ngành Mạng Máy Tính tại HUTECH từ tháng 01/2022 đến 04/2026. Tập trung vào quản trị Linux, cấu hình Cisco, điện toán đám mây AWS và lập trình Python thực tế.",
+          "tags": [
+            "HUTECH",
+            "Networking",
+            "2022 – 2026"
+          ]
+        }
       ]
     },
     "projects": {
@@ -184,7 +360,13 @@
             "Xây dựng hệ thống logging và monitoring để giám sát và tối ưu hiệu suất bảo mật",
             "Triển khai giải pháp dưới dạng ứng dụng container hóa trên hạ tầng đám mây AWS EC2"
           ],
-          "stack": ["Python", "Claude 3.5", "AWS EC2", "Docker", "Guardrails AI"]
+          "stack": [
+            "Python",
+            "Claude 3.5",
+            "AWS EC2",
+            "Docker",
+            "Guardrails AI"
+          ]
         },
         {
           "num": "02 · Hệ Điều Hành Linux",
@@ -196,7 +378,13 @@
             "High Availability & Load Balancing — phân phối lưu lượng đến Server 1 và Server 2 để đảm bảo tính sẵn sàng cao",
             "Dịch vụ tập trung: tích hợp các dịch vụ hạ tầng như DHCP, DNS và FTP trên một gateway/proxy duy nhất"
           ],
-          "stack": ["Linux", "Nginx", "DHCP", "DNS", "FTP"]
+          "stack": [
+            "Linux",
+            "Nginx",
+            "DHCP",
+            "DNS",
+            "FTP"
+          ]
         },
         {
           "num": "03 · Điện Toán Đám Mây",
@@ -207,7 +395,11 @@
             "Bảo mật truy cập: triển khai giám sát và kiểm soát bảo mật",
             "Triển khai giám sát đăng nhập AWS bằng CloudTrail và CloudWatch để phát hiện đăng nhập thất bại và tự động cảnh báo quản trị viên"
           ],
-          "stack": ["AWS CloudTrail", "CloudWatch", "IAM"]
+          "stack": [
+            "AWS CloudTrail",
+            "CloudWatch",
+            "IAM"
+          ]
         }
       ]
     },
@@ -216,11 +408,23 @@
       "title": "Liên Hệ",
       "certEye": "Chứng Chỉ",
       "contInfoEye": "Thông Tin Liên Hệ",
-      "labels": { "phone": "Điện Thoại", "email": "Email", "address": "Địa Chỉ" },
+      "labels": {
+        "phone": "Điện Thoại",
+        "email": "Email",
+        "address": "Địa Chỉ"
+      },
       "addressFull": "Đường Hoàng Văn Thụ, Phường 2, Quận Tân Bình, TP. Hồ Chí Minh",
       "certs": [
-        { "icon": "🏆", "name": "Tìm Kiếm Tài Năng IT 2025 — Lần 10", "sub": "01/2026 · Tham gia — Được Khoa Xác Nhận" },
-        { "icon": "🌐", "name": "Tiếng Anh Vstep Bật 3 (B1)", "sub": "Ngoại Ngữ" }
+        {
+          "icon": "🏆",
+          "name": "Tìm Kiếm Tài Năng IT 2025 — Lần 10",
+          "sub": "01/2026 · Tham gia — Được Khoa Xác Nhận"
+        },
+        {
+          "icon": "🌐",
+          "name": "Tiếng Anh Vstep Bật 3 (B1)",
+          "sub": "Ngoại Ngữ"
+        }
       ]
     },
     "footerRight": "HUTECH · Mạng Máy Tính",
