@@ -1,0 +1,229 @@
+{
+  "shared": {
+    "photoUrl": "https://raw.githubusercontent.com/LeHuuTri-8386/LeHuuTri_Review_Profile/refs/heads/main/LeHuuTri_Review_Profile.jpg",
+    "qrZaloUrl": "https://raw.githubusercontent.com/LeHuuTri-8386/LeHuuTri_Review_Profile/57554eadbb2f4c47c02d5ee9603fe0f4d573934c/QR_Zalo.jpg",
+    "phone": "0327 391 720",
+    "dob": "27/02/2004",
+    "email": "trile.1036@gmail.com"
+  },
+  "en": {
+    "nav": { "home": "Home", "about": "About", "skills": "Skills", "strengths": "Strengths", "experience": "Experience", "projects": "Projects", "contact": "Contact" },
+    "hero": {
+      "role": "Network & Cloud Infrastructure Engineer",
+      "openBadge": "Open to Opportunities",
+      "labels": { "name": "Name", "dob": "DOB", "phone": "Phone", "address": "Address", "email": "E-Mail", "education": "Education", "major": "Major" },
+      "name": "Le Huu Tri",
+      "address": "Hoang Van Thu Street, Ward 2, Tan Binh District",
+      "education": "HUTECH University",
+      "major": "Computer Networks"
+    },
+    "about": {
+      "eyebrow": "Who I Am",
+      "title": "About Me",
+      "paragraphs": [
+        "Information Technology student majoring in Computer Networks at HCMC University of Technology (HUTECH), with a career orientation toward System Administration and Cloud Infrastructure.",
+        "Possess knowledge and hands-on practical experience with Linux operating systems and Cisco network device configuration.",
+        "Seeking to apply for a staff position to leverage academic knowledge, develop practical skills, and contribute to the growth of the company."
+      ]
+    },
+    "stats": [
+      { "num": "4", "suffix": "+", "label": "Years Study" },
+      { "num": "3", "suffix": "+", "label": "Projects" },
+      { "num": "5", "suffix": "mo", "label": "Internship" },
+      { "num": "8", "suffix": "+", "label": "Technologies" }
+    ],
+    "skills": {
+      "eyebrow": "What I Know",
+      "title": "Skills",
+      "items": [
+        { "icon": "☁", "name": "AWS", "level": 2 },
+        { "icon": "🐧", "name": "Linux Server Administration", "level": 2 },
+        { "icon": "🔌", "name": "Cisco Device Configuration", "level": 2 }
+      ]
+    },
+    "strengths": {
+      "eyebrow": "What I Bring",
+      "title": "Strengths",
+      "items": [
+        "Basic knowledge of network systems and services such as DNS, DHCP, and FTP",
+        "Basic experience working in a Linux environment",
+        "Ability to self-learn, research documentation, and proactively solve problems"
+      ]
+    },
+    "experience": {
+      "eyebrow": "My Journey",
+      "title": "Experience",
+      "items": [
+        { "date": "2026", "org": "Green TG", "role": "IT Support Intern", "desc": "IT Support Intern – Công Ty TNHH Green TG – 3 months (2026)", "tags": ["IT Support", "Green TG", "3 Months"] },
+        { "date": "2026", "org": "365EJSC", "role": "Backend Developer Intern", "desc": "Backend Developer Intern – 365EJSC – 2 months", "tags": ["Backend", "C#", "2 Months"] },
+        { "date": "01/2022", "org": "HUTECH", "role": "Student — Computer Networks", "desc": "Computer Networks major at HUTECH from January 2022 to April 2026. Focused on Linux administration, Cisco configuration, AWS cloud computing, and practical Python programming.", "tags": ["HUTECH", "Networking", "2022 – 2026"] }
+      ]
+    },
+    "projects": {
+      "eyebrow": "What I Built",
+      "title": "Course Projects",
+      "items": [
+        {
+          "num": "01 · Information Technology Major Projects",
+          "name": "Secure Conversation AI with Guardrails",
+          "cat": "IT Major Project",
+          "statusId": "SYS::AI_SECURE",
+          "bullets": [
+            "Developed a Secure Conversation AI Chatbot system using Python and Claude Sonnet 3.5",
+            "Implemented Guardrails mechanisms (Guardrails AI, Claude Sonnet 3.5) to detect and prevent prompt injection, harmful content, and sensitive data leakage (PII)",
+            "Built logging and monitoring systems to oversee and optimize security performance",
+            "Deployed the solution as a containerized application on AWS EC2 cloud infrastructure"
+          ],
+          "stack": ["Python", "Claude 3.5", "AWS EC2", "Docker", "Guardrails AI"]
+        },
+        {
+          "num": "02 · Linux Operating System",
+          "name": "Nginx Reverse Proxy & Web Server Cluster",
+          "cat": "Linux Operating System",
+          "statusId": "SYS::LINUX_NET",
+          "bullets": [
+            "Built an Nginx Reverse Proxy system and a Web server cluster; Reverse Proxy Nginx server acts as an intermediary to route requests from clients",
+            "High Availability & Load Balancing — distributes traffic to Server 1 and Server 2 to ensure high availability",
+            "Centralized Services: integrates infrastructure services such as DHCP, DNS, and FTP on a single gateway/proxy"
+          ],
+          "stack": ["Linux", "Nginx", "DHCP", "DNS", "FTP"]
+        },
+        {
+          "num": "03 · Cloud Computing",
+          "name": "Cloud Access Security & Monitoring",
+          "cat": "Cloud Computing",
+          "statusId": "SYS::CLOUD_SEC",
+          "bullets": [
+            "Securing Access: implemented monitoring and security controls",
+            "Deployed AWS login monitoring using Cloud Trail and CloudWatch to detect failed logins and automatically alert administrators to prevent unauthorized access"
+          ],
+          "stack": ["AWS CloudTrail", "CloudWatch", "IAM"]
+        }
+      ]
+    },
+    "contact": {
+      "eyebrow": "Get In Touch",
+      "title": "Contact",
+      "certEye": "Certifications",
+      "contInfoEye": "Contact Info",
+      "labels": { "phone": "Phone", "email": "Email", "address": "Address" },
+      "addressFull": "Hoang Van Thu Street, Ward 2, Tan Binh District, Ho Chi Minh City",
+      "certs": [
+        { "icon": "🏆", "name": "IT Talent Search 2025 — 10th Edition", "sub": "01/2026 · Participated — Certified by the Faculty" },
+        { "icon": "🌐", "name": "VSTEP English Certificate (B1)", "sub": "Foreign Language" }
+      ]
+    },
+    "footerRight": "HUTECH · Computer Networks",
+    "marquee": "Lê Hữu Trí - Review Profile"
+  },
+  "vi": {
+    "nav": { "home": "Trang Chủ", "about": "Giới Thiệu", "skills": "Kỹ Năng", "strengths": "Điểm Mạnh", "experience": "Kinh Nghiệm", "projects": "Dự Án", "contact": "Liên Hệ" },
+    "hero": {
+      "role": "Kỹ Sư Mạng & Hạ Tầng Đám Mây",
+      "openBadge": "Đang Tìm Cơ Hội",
+      "labels": { "name": "Họ Tên", "dob": "Ngày Sinh", "phone": "Điện Thoại", "address": "Địa Chỉ", "email": "Email", "education": "Trường", "major": "Chuyên Ngành" },
+      "name": "Lê Hữu Trí",
+      "address": "Đường Hoàng Văn Thụ, Phường 2, Quận Tân Bình",
+      "education": "ĐH Công Nghệ TP.HCM (HUTECH)",
+      "major": "Mạng Máy Tính"
+    },
+    "about": {
+      "eyebrow": "Về Tôi",
+      "title": "Giới Thiệu",
+      "paragraphs": [
+        "Sinh viên Công nghệ Thông tin chuyên ngành Mạng Máy Tính tại Trường Đại học Công nghệ TP.HCM (HUTECH), định hướng nghề nghiệp theo hướng Quản trị Hệ thống và Hạ tầng Đám mây.",
+        "Có kiến thức và kinh nghiệm thực hành với hệ điều hành Linux và cấu hình thiết bị mạng Cisco.",
+        "Tìm kiếm cơ hội áp dụng kiến thức học thuật, phát triển kỹ năng thực tế và đóng góp vào sự phát triển của tổ chức."
+      ]
+    },
+    "stats": [
+      { "num": "4", "suffix": "+", "label": "Năm Học" },
+      { "num": "3", "suffix": "+", "label": "Dự Án" },
+      { "num": "5", "suffix": "tháng", "label": "Thực Tập" },
+      { "num": "8", "suffix": "+", "label": "Công Nghệ" }
+    ],
+    "skills": {
+      "eyebrow": "Tôi Biết Gì",
+      "title": "Kỹ Năng",
+      "items": [
+        { "icon": "☁", "name": "AWS", "level": 2 },
+        { "icon": "🐧", "name": "Quản Trị Server Linux", "level": 2 },
+        { "icon": "🔌", "name": "Cấu Hình Thiết Bị Cisco", "level": 2 }
+      ]
+    },
+    "strengths": {
+      "eyebrow": "Tôi Mang Lại Gì",
+      "title": "Điểm Mạnh",
+      "items": [
+        "Kiến thức cơ bản về hệ thống mạng và các dịch vụ như DNS, DHCP và FTP",
+        "Kinh nghiệm cơ bản làm việc trong môi trường Linux",
+        "Khả năng tự học, nghiên cứu tài liệu và chủ động giải quyết vấn đề"
+      ]
+    },
+    "experience": {
+      "eyebrow": "Hành Trình",
+      "title": "Kinh Nghiệm",
+      "items": [
+        { "date": "2026", "org": "Green TG", "role": "Thực Tập Sinh IT Support", "desc": "Thực tập sinh IT Support – Công Ty TNHH Green TG – 3 tháng (2026)", "tags": ["IT Support", "Green TG", "3 Tháng"] },
+        { "date": "2026", "org": "365EJSC", "role": "Thực Tập Sinh Backend Developer", "desc": "Thực tập sinh Backend Developer – 365EJSC – 2 tháng", "tags": ["Backend", "C#", "2 Tháng"] },
+        { "date": "01/2022", "org": "HUTECH", "role": "Sinh Viên — Mạng Máy Tính", "desc": "Chuyên ngành Mạng Máy Tính tại HUTECH từ tháng 01/2022 đến 04/2026. Tập trung vào quản trị Linux, cấu hình Cisco, điện toán đám mây AWS và lập trình Python thực tế.", "tags": ["HUTECH", "Networking", "2022 – 2026"] }
+      ]
+    },
+    "projects": {
+      "eyebrow": "Những Gì Tôi Xây Dựng",
+      "title": "Dự Án Học Phần",
+      "items": [
+        {
+          "num": "01 · Đồ Án Chuyên Ngành IT",
+          "name": "Secure Conversation AI with Guardrails",
+          "cat": "Đồ Án Chuyên Ngành IT",
+          "statusId": "SYS::AI_SECURE",
+          "bullets": [
+            "Phát triển hệ thống Chatbot AI an toàn sử dụng Python và Claude Sonnet 3.5",
+            "Triển khai cơ chế Guardrails để phát hiện và ngăn chặn prompt injection, nội dung độc hại và rò rỉ dữ liệu nhạy cảm (PII)",
+            "Xây dựng hệ thống logging và monitoring để giám sát và tối ưu hiệu suất bảo mật",
+            "Triển khai giải pháp dưới dạng ứng dụng container hóa trên hạ tầng đám mây AWS EC2"
+          ],
+          "stack": ["Python", "Claude 3.5", "AWS EC2", "Docker", "Guardrails AI"]
+        },
+        {
+          "num": "02 · Hệ Điều Hành Linux",
+          "name": "Nginx Reverse Proxy & Web Server Cluster",
+          "cat": "Hệ Điều Hành Linux",
+          "statusId": "SYS::LINUX_NET",
+          "bullets": [
+            "Xây dựng hệ thống Nginx Reverse Proxy và cụm Web server; Nginx đóng vai trò trung gian định tuyến yêu cầu từ client",
+            "High Availability & Load Balancing — phân phối lưu lượng đến Server 1 và Server 2 để đảm bảo tính sẵn sàng cao",
+            "Dịch vụ tập trung: tích hợp các dịch vụ hạ tầng như DHCP, DNS và FTP trên một gateway/proxy duy nhất"
+          ],
+          "stack": ["Linux", "Nginx", "DHCP", "DNS", "FTP"]
+        },
+        {
+          "num": "03 · Điện Toán Đám Mây",
+          "name": "Cloud Access Security & Monitoring",
+          "cat": "Điện Toán Đám Mây",
+          "statusId": "SYS::CLOUD_SEC",
+          "bullets": [
+            "Bảo mật truy cập: triển khai giám sát và kiểm soát bảo mật",
+            "Triển khai giám sát đăng nhập AWS bằng CloudTrail và CloudWatch để phát hiện đăng nhập thất bại và tự động cảnh báo quản trị viên"
+          ],
+          "stack": ["AWS CloudTrail", "CloudWatch", "IAM"]
+        }
+      ]
+    },
+    "contact": {
+      "eyebrow": "Liên Hệ",
+      "title": "Liên Hệ",
+      "certEye": "Chứng Chỉ",
+      "contInfoEye": "Thông Tin Liên Hệ",
+      "labels": { "phone": "Điện Thoại", "email": "Email", "address": "Địa Chỉ" },
+      "addressFull": "Đường Hoàng Văn Thụ, Phường 2, Quận Tân Bình, TP. Hồ Chí Minh",
+      "certs": [
+        { "icon": "🏆", "name": "Tìm Kiếm Tài Năng IT 2025 — Lần 10", "sub": "01/2026 · Tham gia — Được Khoa Xác Nhận" },
+        { "icon": "🌐", "name": "Tiếng Anh Vstep Bật 3 (B1)", "sub": "Ngoại Ngữ" }
+      ]
+    },
+    "footerRight": "HUTECH · Mạng Máy Tính",
+    "marquee": "Lê Hữu Trí - Xem Hồ Sơ"
+  }
+}

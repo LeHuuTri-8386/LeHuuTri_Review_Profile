@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Lê Hữu Trí CV</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --teal:#1abc9c; --teal-dk:#15a084; --dark:#1c1c1e;
+    --panel:#f5f6f8; --panel2:#eef0f3; --border:#e2e5ea; --text:#2d3142; --muted:#6b7280;
+  }
+  body{font-family:'Times New Roman',Times,serif;background:var(--panel);color:var(--text);min-height:100vh;line-height:1.6;}
+
+  /* ---------- Login screen ---------- */
+  #loginScreen{
+    min-height:100vh; display:flex; align-items:center; justify-content:center;
+    background:var(--dark);
+    background-image:linear-gradient(rgba(26,188,156,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(26,188,156,0.07) 1px,transparent 1px);
+    background-size:36px 36px;
+  }
+  .login-box{
+    background:rgba(20,22,24,0.92); border:1px solid rgba(26,188,156,0.35);
+    padding:40px 36px; width:340px; max-width:90vw;
+    box-shadow:0 0 40px rgba(26,188,156,0.12);
+  }
+  .login-eyebrow{font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+  .login-title{font-size:26px;font-weight:700;color:#fff;margin-bottom:24px;}
+  .login-box input{
+    width:100%; padding:12px 14px; margin-bottom:14px;
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15);
+    color:#fff; font-size:14px; font-family:inherit;
+  }
+  .login-box input:focus{outline:none;border-color:var(--teal);}
+  .login-box button{
+    width:100%; padding:12px; background:var(--teal); color:#fff; border:none;
+    font-size:14px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; cursor:pointer;
+    transition:background .2s;
+  }
+  .login-box button:hover{background:var(--teal-dk);}
+  #loginError{color:#ff6b6b;font-size:13px;margin-top:12px;min-height:18px;}
+
+  /* ---------- Admin shell ---------- */
+  #adminScreen{display:none;}
+  header.admin-bar{
+    position:sticky; top:0; z-index:50;
+    background:var(--dark); color:#fff; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    border-bottom:2px solid var(--teal);
+  }
+  header.admin-bar h1{font-size:18px; letter-spacing:0.05em;}
+  header.admin-bar h1 span{color:var(--teal);}
+  .bar-actions{display:flex; gap:10px; flex-wrap:wrap;}
+  .btn{
+    padding:9px 16px; border:1px solid var(--teal); background:transparent; color:var(--teal);
+    font-family:inherit; font-size:13px; font-weight:700; letter-spacing:0.04em; cursor:pointer;
+    transition:background .2s,color .2s;
+  }
+  .btn:hover{background:var(--teal); color:#fff;}
+  .btn.primary{background:var(--teal); color:#fff;}
+  .btn.primary:hover{background:var(--teal-dk);}
+  .btn.danger{border-color:#e0575b; color:#e0575b;}
+  .btn.danger:hover{background:#e0575b; color:#fff;}
+
+  #statusBar{
+    padding:10px 28px; font-size:13px; letter-spacing:0.02em;
+    display:none;
+  }
+  #statusBar.show{display:block;}
+  #statusBar.ok{background:#e4f7f0; color:var(--teal-dk); border-bottom:1px solid var(--teal);}
+  #statusBar.err{background:#fdeaea; color:#c0392b; border-bottom:1px solid #e0575b;}
+  #statusBar.info{background:var(--panel2); color:var(--muted); border-bottom:1px solid var(--border);}
+
+  .wrap{max-width:1000px; margin:0 auto; padding:28px;}
+
+  .settings{
+    background:#fff; border:1px solid var(--border); padding:20px 22px; margin-bottom:24px;
+  }
+  .settings summary{cursor:pointer; font-weight:700; font-size:14px; letter-spacing:0.03em;}
+  .settings .grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px;}
+  .settings .grid .full{grid-column:1/-1;}
+  label.field-label{display:block; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;}
+  input[type=text], input[type=password], input[type=number], textarea{
+    width:100%; padding:9px 11px; border:1px solid var(--border); background:#fff;
+    font-family:inherit; font-size:14px; color:var(--text);
+  }
+  input:focus, textarea:focus{outline:none; border-color:var(--teal);}
+  textarea{resize:vertical; min-height:60px; line-height:1.5;}
+
+  .tabs{display:flex; gap:6px; margin-bottom:20px; border-bottom:2px solid var(--border);}
+  .tab-btn{
+    padding:10px 18px; background:none; border:none; cursor:pointer;
+    font-family:inherit; font-size:14px; font-weight:700; color:var(--muted);
+    border-bottom:2px solid transparent; margin-bottom:-2px;
+  }
+  .tab-btn.active{color:var(--teal-dk); border-color:var(--teal);}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  fieldset.node-obj{
+    border:1px solid var(--border); padding:16px 18px; margin-bottom:16px; background:#fff;
+  }
+  fieldset.node-obj > legend{
+    font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--teal-dk); padding:0 8px;
+  }
+  .field-row{margin-bottom:14px;}
+  .field-row:last-child{margin-bottom:0;}
+
+  .array-item{
+    border:1px dashed rgba(26,188,156,0.4); padding:14px 16px 16px; margin-bottom:14px; position:relative; background:var(--panel);
+  }
+  .array-item-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;}
+  .array-item-head span{font-size:11px; color:var(--muted); letter-spacing:0.06em; text-transform:uppercase;}
+  .remove-btn{
+    background:none; border:1px solid #e0575b; color:#e0575b; font-size:11px; padding:4px 10px; cursor:pointer;
+  }
+  .remove-btn:hover{background:#e0575b; color:#fff;}
+  .add-btn{
+    background:none; border:1px dashed var(--teal); color:var(--teal-dk); font-size:12px;
+    padding:8px 14px; cursor:pointer; width:100%; font-weight:700; letter-spacing:0.04em;
+  }
+  .add-btn:hover{background:rgba(26,188,156,0.08);}
+
+  .hint{font-size:12px; color:var(--muted); margin-top:4px;}
+  footer.admin-footer{text-align:center; padding:30px; font-size:12px; color:var(--muted);}
+</style>
+</head>
+<body>
+
+<!-- ===================== LOGIN ===================== -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-eyebrow">[ Restricted Access ]</div>
+    <div class="login-title">Admin Login</div>
+    <input type="password" id="passwordInput" placeholder="Mật khẩu quản trị" autocomplete="off">
+    <button id="loginBtn">Đăng nhập</button>
+    <div id="loginError"></div>
+  </div>
+</div>
+
+<!-- ===================== ADMIN ===================== -->
+<div id="adminScreen">
+  <header class="admin-bar">
+    <h1>CV <span>Admin</span> — Lê Hữu Trí</h1>
+    <div class="bar-actions">
+      <button class="btn" id="reloadBtn">↻ Tải lại từ GitHub</button>
+      <button class="btn" id="exportBtn">⭳ Xuất JSON</button>
+      <button class="btn" id="importBtn">⭱ Nhập JSON</button>
+      <input type="file" id="importFile" accept="application/json" style="display:none">
+      <button class="btn primary" id="saveBtn">💾 Lưu & Xuất bản</button>
+      <button class="btn danger" id="logoutBtn">Đăng xuất</button>
+    </div>
+  </header>
+
+  <div id="statusBar"></div>
+
+  <div class="wrap">
+    <details class="settings">
+      <summary>⚙ Cài đặt kết nối GitHub</summary>
+      <div class="grid">
+        <div>
+          <label class="field-label">Chủ repo (owner)</label>
+          <input type="text" id="cfgOwner">
+        </div>
+        <div>
+          <label class="field-label">Tên repo</label>
+          <input type="text" id="cfgRepo">
+        </div>
+        <div>
+          <label class="field-label">Nhánh (branch)</label>
+          <input type="text" id="cfgBranch">
+        </div>
+        <div>
+          <label class="field-label">Đường dẫn file dữ liệu</label>
+          <input type="text" id="cfgPath">
+        </div>
+        <div class="full">
+          <label class="field-label">GitHub Personal Access Token (quyền "repo")</label>
+          <input type="password" id="cfgToken" placeholder="ghp_...">
+          <div class="hint">Token chỉ lưu trong trình duyệt của bạn (localStorage), không gửi cho ai khác ngoài GitHub. Tạo tại: GitHub → Settings → Developer settings → Personal access tokens.</div>
+        </div>
+      </div>
+    </details>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="general">Chung</button>
+      <button class="tab-btn" data-tab="en">🇺🇸 English</button>
+      <button class="tab-btn" data-tab="vi">🇻🇳 Tiếng Việt</button>
+    </div>
+
+    <div class="tab-panel active" id="panel-general"></div>
+    <div class="tab-panel" id="panel-en"></div>
+    <div class="tab-panel" id="panel-vi"></div>
+  </div>
+
+  <footer class="admin-footer">Sau khi bấm "Lưu & Xuất bản", GitHub Pages thường mất khoảng 30–90 giây để cập nhật trang chính.</footer>
+</div>
+
+<script>
+/* ============ Default content (fallback if data.json not found yet) ============ */
+const DEFAULT_DATA = {
+  "shared": {
+    "photoUrl": "https://raw.githubusercontent.com/LeHuuTri-8386/LeHuuTri_Review_Profile/refs/heads/main/LeHuuTri_Review_Profile.jpg",
+    "qrZaloUrl": "https://raw.githubusercontent.com/LeHuuTri-8386/LeHuuTri_Review_Profile/57554eadbb2f4c47c02d5ee9603fe0f4d573934c/QR_Zalo.jpg",
+    "phone": "0327 391 720",
+    "dob": "27/02/2004",
+    "email": "trile.1036@gmail.com"
+  },
+  "en": {
+    "nav": {
+      "home": "Home",
+      "about": "About",
+      "skills": "Skills",
+      "strengths": "Strengths",
+      "experience": "Experience",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "hero": {
+      "role": "Network & Cloud Infrastructure Engineer",
+      "openBadge": "Open to Opportunities",
+      "labels": {
+        "name": "Name",
+        "dob": "DOB",
+        "phone": "Phone",
+        "address": "Address",
+        "email": "E-Mail",
+        "education": "Education",
+        "major": "Major"
+      },
+      "name": "Le Huu Tri",
+      "address": "Hoang Van Thu Street, Ward 2, Tan Binh District",
+      "education": "HUTECH University",
+      "major": "Computer Networks"
+    },
+    "about": {
+      "eyebrow": "Who I Am",
+      "title": "About Me",
+      "paragraphs": [
+        "Information Technology student majoring in Computer Networks at HCMC University of Technology (HUTECH), with a career orientation toward System Administration and Cloud Infrastructure.",
+        "Possess knowledge and hands-on practical experience with Linux operating systems and Cisco network device configuration.",
+        "Seeking to apply for a staff position to leverage academic knowledge, develop practical skills, and contribute to the growth of the company."
+      ]
+    },
+    "stats": [
+      {
+        "num": "4",
+        "suffix": "+",
+        "label": "Years Study"
+      },
+      {
+        "num": "3",
+        "suffix": "+",
+        "label": "Projects"
+      },
+      {
+        "num": "5",
+        "suffix": "mo",
+        "label": "Internship"
+      },
+      {
+        "num": "8",
+        "suffix": "+",
+        "label": "Technologies"
+      }
+    ],
+    "skills": {
+      "eyebrow": "What I Know",
+      "title": "Skills",
+      "items": [
+        {
+          "icon": "☁",
+          "name": "AWS",
+          "level": 2
+        },
+        {
+          "icon": "🐧",
+          "name": "Linux Server Administration",
+          "level": 2
+        },
+        {
+          "icon": "🔌",
+          "name": "Cisco Device Configuration",
+          "level": 2
+        }
+      ]
+    },
+    "strengths": {
+      "eyebrow": "What I Bring",
+      "title": "Strengths",
+      "items": [
+        "Basic knowledge of network systems and services such as DNS, DHCP, and FTP",
+        "Basic experience working in a Linux environment",
+        "Ability to self-learn, research documentation, and proactively solve problems"
+      ]
+    },
+    "experience": {
+      "eyebrow": "My Journey",
+      "title": "Experience",
+      "items": [
+        {
+          "date": "2026",
+          "org": "Green TG",
+          "role": "IT Support Intern",
+          "desc": "IT Support Intern – Công Ty TNHH Green TG – 3 months (2026)",
+          "tags": [
+            "IT Support",
+            "Green TG",
+            "3 Months"
+          ]
+        },
+        {
+          "date": "2026",
+          "org": "365EJSC",
+          "role": "Backend Developer Intern",
+          "desc": "Backend Developer Intern – 365EJSC – 2 months",
+          "tags": [
+            "Backend",
+            "C#",
+            "2 Months"
+          ]
+        },
+        {
+          "date": "01/2022",
+          "org": "HUTECH",
+          "role": "Student — Computer Networks",
+          "desc": "Computer Networks major at HUTECH from January 2022 to April 2026. Focused on Linux administration, Cisco configuration, AWS cloud computing, and practical Python programming.",
+          "tags": [
+            "HUTECH",
+            "Networking",
+            "2022 – 2026"
+          ]
+        }
+      ]
+    },
+    "projects": {
+      "eyebrow": "What I Built",
+      "title": "Course Projects",
+      "items": [
+        {
+          "num": "01 · Information Technology Major Projects",
+          "name": "Secure Conversation AI with Guardrails",
+          "cat": "IT Major Project",
+          "statusId": "SYS::AI_SECURE",
+          "bullets": [
+            "Developed a Secure Conversation AI Chatbot system using Python and Claude Sonnet 3.5",
+            "Implemented Guardrails mechanisms (Guardrails AI, Claude Sonnet 3.5) to detect and prevent prompt injection, harmful content, and sensitive data leakage (PII)",
+            "Built logging and monitoring systems to oversee and optimize security performance",
+            "Deployed the solution as a containerized application on AWS EC2 cloud infrastructure"
+          ],
+          "stack": [
+            "Python",
+            "Claude 3.5",
+            "AWS EC2",
+            "Docker",
+            "Guardrails AI"
+          ]
+        },
+        {
+          "num": "02 · Linux Operating System",
+          "name": "Nginx Reverse Proxy & Web Server Cluster",
+          "cat": "Linux Operating System",
+          "statusId": "SYS::LINUX_NET",
+          "bullets": [
+            "Built an Nginx Reverse Proxy system and a Web server cluster; Reverse Proxy Nginx server acts as an intermediary to route requests from clients",
+            "High Availability & Load Balancing — distributes traffic to Server 1 and Server 2 to ensure high availability",
+            "Centralized Services: integrates infrastructure services such as DHCP, DNS, and FTP on a single gateway/proxy"
+          ],
+          "stack": [
+            "Linux",
+            "Nginx",
+            "DHCP",
+            "DNS",
+            "FTP"
+          ]
+        },
+        {
+          "num": "03 · Cloud Computing",
+          "name": "Cloud Access Security & Monitoring",
+          "cat": "Cloud Computing",
+          "statusId": "SYS::CLOUD_SEC",
+          "bullets": [
+            "Securing Access: implemented monitoring and security controls",
+            "Deployed AWS login monitoring using Cloud Trail and CloudWatch to detect failed logins and automatically alert administrators to prevent unauthorized access"
+          ],
+          "stack": [
+            "AWS CloudTrail",
+            "CloudWatch",
+            "IAM"
+          ]
+        }
+      ]
+    },
+    "contact": {
+      "eyebrow": "Get In Touch",
+      "title": "Contact",
+      "certEye": "Certifications",
+      "contInfoEye": "Contact Info",
+      "labels": {
+        "phone": "Phone",
+        "email": "Email",
+        "address": "Address"
+      },
+      "addressFull": "Hoang Van Thu Street, Ward 2, Tan Binh District, Ho Chi Minh City",
+      "certs": [
+        {
+          "icon": "🏆",
+          "name": "IT Talent Search 2025 — 10th Edition",
+          "sub": "01/2026 · Participated — Certified by the Faculty"
+        },
+        {
+          "icon": "🌐",
+          "name": "VSTEP English Certificate (B1)",
+          "sub": "Foreign Language"
+        }
+      ]
+    },
+    "footerRight": "HUTECH · Computer Networks",
+    "marquee": "Lê Hữu Trí - Review Profile"
+  },
+  "vi": {
+    "nav": {
+      "home": "Trang Chủ",
+      "about": "Giới Thiệu",
+      "skills": "Kỹ Năng",
+      "strengths": "Điểm Mạnh",
+      "experience": "Kinh Nghiệm",
+      "projects": "Dự Án",
+      "contact": "Liên Hệ"
+    },
+    "hero": {
+      "role": "Kỹ Sư Mạng & Hạ Tầng Đám Mây",
+      "openBadge": "Đang Tìm Cơ Hội",
+      "labels": {
+        "name": "Họ Tên",
+        "dob": "Ngày Sinh",
+        "phone": "Điện Thoại",
+        "address": "Địa Chỉ",
+        "email": "Email",
+        "education": "Trường",
+        "major": "Chuyên Ngành"
+      },
+      "name": "Lê Hữu Trí",
+      "address": "Đường Hoàng Văn Thụ, Phường 2, Quận Tân Bình",
+      "education": "ĐH Công Nghệ TP.HCM (HUTECH)",
+      "major": "Mạng Máy Tính"
+    },
+    "about": {
+      "eyebrow": "Về Tôi",
+      "title": "Giới Thiệu",
+      "paragraphs": [
+        "Sinh viên Công nghệ Thông tin chuyên ngành Mạng Máy Tính tại Trường Đại học Công nghệ TP.HCM (HUTECH), định hướng nghề nghiệp theo hướng Quản trị Hệ thống và Hạ tầng Đám mây.",
+        "Có kiến thức và kinh nghiệm thực hành với hệ điều hành Linux và cấu hình thiết bị mạng Cisco.",
+        "Tìm kiếm cơ hội áp dụng kiến thức học thuật, phát triển kỹ năng thực tế và đóng góp vào sự phát triển của tổ chức."
+      ]
+    },
+    "stats": [
+      {
+        "num": "4",
+        "suffix": "+",
+        "label": "Năm Học"
+      },
+      {
+        "num": "3",
+        "suffix": "+",
+        "label": "Dự Án"
+      },
+      {
+        "num": "5",
+        "suffix": "tháng",
+        "label": "Thực Tập"
+      },
+      {
+        "num": "8",
+        "suffix": "+",
+        "label": "Công Nghệ"
+      }
+    ],
+    "skills": {
+      "eyebrow": "Tôi Biết Gì",
+      "title": "Kỹ Năng",
+      "items": [
+        {
+          "icon": "☁",
+          "name": "AWS",
+          "level": 2
+        },
+        {
+          "icon": "🐧",
+          "name": "Quản Trị Server Linux",
+          "level": 2
+        },
+        {
+          "icon": "🔌",
+          "name": "Cấu Hình Thiết Bị Cisco",
+          "level": 2
+        }
+      ]
+    },
+    "strengths": {
+      "eyebrow": "Tôi Mang Lại Gì",
+      "title": "Điểm Mạnh",
+      "items": [
+        "Kiến thức cơ bản về hệ thống mạng và các dịch vụ như DNS, DHCP và FTP",
+        "Kinh nghiệm cơ bản làm việc trong môi trường Linux",
+        "Khả năng tự học, nghiên cứu tài liệu và chủ động giải quyết vấn đề"
+      ]
+    },
+    "experience": {
+      "eyebrow": "Hành Trình",
+      "title": "Kinh Nghiệm",
+      "items": [
+        {
+          "date": "2026",
+          "org": "Green TG",
+          "role": "Thực Tập Sinh IT Support",
+          "desc": "Thực tập sinh IT Support – Công Ty TNHH Green TG – 3 tháng (2026)",
+          "tags": [
+            "IT Support",
+            "Green TG",
+            "3 Tháng"
+          ]
+        },
+        {
+          "date": "2026",
+          "org": "365EJSC",
+          "role": "Thực Tập Sinh Backend Developer",
+          "desc": "Thực tập sinh Backend Developer – 365EJSC – 2 tháng",
+          "tags": [
+            "Backend",
+            "C#",
+            "2 Tháng"
+          ]
+        },
+        {
+          "date": "01/2022",
+          "org": "HUTECH",
+          "role": "Sinh Viên — Mạng Máy Tính",
+          "desc": "Chuyên ngành Mạng Máy Tính tại HUTECH từ tháng 01/2022 đến 04/2026. Tập trung vào quản trị Linux, cấu hình Cisco, điện toán đám mây AWS và lập trình Python thực tế.",
+          "tags": [
+            "HUTECH",
+            "Networking",
+            "2022 – 2026"
+          ]
+        }
+      ]
+    },
+    "projects": {
+      "eyebrow": "Những Gì Tôi Xây Dựng",
+      "title": "Dự Án Học Phần",
+      "items": [
+        {
+          "num": "01 · Đồ Án Chuyên Ngành IT",
+          "name": "Secure Conversation AI with Guardrails",
+          "cat": "Đồ Án Chuyên Ngành IT",
+          "statusId": "SYS::AI_SECURE",
+          "bullets": [
+            "Phát triển hệ thống Chatbot AI an toàn sử dụng Python và Claude Sonnet 3.5",
+            "Triển khai cơ chế Guardrails để phát hiện và ngăn chặn prompt injection, nội dung độc hại và rò rỉ dữ liệu nhạy cảm (PII)",
+            "Xây dựng hệ thống logging và monitoring để giám sát và tối ưu hiệu suất bảo mật",
+            "Triển khai giải pháp dưới dạng ứng dụng container hóa trên hạ tầng đám mây AWS EC2"
+          ],
+          "stack": [
+            "Python",
+            "Claude 3.5",
+            "AWS EC2",
+            "Docker",
+            "Guardrails AI"
+          ]
+        },
+        {
+          "num": "02 · Hệ Điều Hành Linux",
+          "name": "Nginx Reverse Proxy & Web Server Cluster",
+          "cat": "Hệ Điều Hành Linux",
+          "statusId": "SYS::LINUX_NET",
+          "bullets": [
+            "Xây dựng hệ thống Nginx Reverse Proxy và cụm Web server; Nginx đóng vai trò trung gian định tuyến yêu cầu từ client",
+            "High Availability & Load Balancing — phân phối lưu lượng đến Server 1 và Server 2 để đảm bảo tính sẵn sàng cao",
+            "Dịch vụ tập trung: tích hợp các dịch vụ hạ tầng như DHCP, DNS và FTP trên một gateway/proxy duy nhất"
+          ],
+          "stack": [
+            "Linux",
+            "Nginx",
+            "DHCP",
+            "DNS",
+            "FTP"
+          ]
+        },
+        {
+          "num": "03 · Điện Toán Đám Mây",
+          "name": "Cloud Access Security & Monitoring",
+          "cat": "Điện Toán Đám Mây",
+          "statusId": "SYS::CLOUD_SEC",
+          "bullets": [
+            "Bảo mật truy cập: triển khai giám sát và kiểm soát bảo mật",
+            "Triển khai giám sát đăng nhập AWS bằng CloudTrail và CloudWatch để phát hiện đăng nhập thất bại và tự động cảnh báo quản trị viên"
+          ],
+          "stack": [
+            "AWS CloudTrail",
+            "CloudWatch",
+            "IAM"
+          ]
+        }
+      ]
+    },
+    "contact": {
+      "eyebrow": "Liên Hệ",
+      "title": "Liên Hệ",
+      "certEye": "Chứng Chỉ",
+      "contInfoEye": "Thông Tin Liên Hệ",
+      "labels": {
+        "phone": "Điện Thoại",
+        "email": "Email",
+        "address": "Địa Chỉ"
+      },
+      "addressFull": "Đường Hoàng Văn Thụ, Phường 2, Quận Tân Bình, TP. Hồ Chí Minh",
+      "certs": [
+        {
+          "icon": "🏆",
+          "name": "Tìm Kiếm Tài Năng IT 2025 — Lần 10",
+          "sub": "01/2026 · Tham gia — Được Khoa Xác Nhận"
+        },
+        {
+          "icon": "🌐",
+          "name": "Tiếng Anh Vstep Bật 3 (B1)",
+          "sub": "Ngoại Ngữ"
+        }
+      ]
+    },
+    "footerRight": "HUTECH · Mạng Máy Tính",
+    "marquee": "Lê Hữu Trí - Xem Hồ Sơ"
+  }
+};
+
+const PASSWORD_HASH = "6d6cc73aa385ae552a8b61f6930c6eb43f2555987313163b535526488c0976ed";
+
+const LS_AUTH = "cvAdminAuthed";
+const LS_CFG  = "cvAdminConfig";
+
+let siteData = null;
+let currentSha = null;
+
+/* ---------- SHA-256 for password check ---------- */
+async function sha256(text){
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,"0")).join("");
+}
+
+/* ---------- Login ---------- */
+document.getElementById("loginBtn").addEventListener("click", tryLogin);
+document.getElementById("passwordInput").addEventListener("keydown", e => { if(e.key==="Enter") tryLogin(); });
+
+async function tryLogin(){
+  const pw = document.getElementById("passwordInput").value;
+  const hash = await sha256(pw);
+  if(hash === PASSWORD_HASH){
+    sessionStorage.setItem(LS_AUTH, "1");
+    showAdmin();
+  } else {
+    document.getElementById("loginError").textContent = "Sai mật khẩu, thử lại.";
+  }
+}
+
+function showAdmin(){
+  document.getElementById("loginScreen").style.display = "none";
+  document.getElementById("adminScreen").style.display = "block";
+  initAdmin();
+}
+
+document.getElementById("logoutBtn").addEventListener("click", () => {
+  sessionStorage.removeItem(LS_AUTH);
+  location.reload();
+});
+
+if(sessionStorage.getItem(LS_AUTH) === "1"){
+  showAdmin();
+}
+
+/* ---------- Config (owner/repo/branch/path/token) ---------- */
+function loadConfig(){
+  const saved = JSON.parse(localStorage.getItem(LS_CFG) || "{}");
+  return Object.assign({
+    owner: "LeHuuTri-8386",
+    repo: "LeHuuTri_Review_Profile",
+    branch: "main",
+    path: "data.json",
+    token: ""
+  }, saved);
+}
+function saveConfig(cfg){ localStorage.setItem(LS_CFG, JSON.stringify(cfg)); }
+
+function getConfigFromForm(){
+  return {
+    owner: document.getElementById("cfgOwner").value.trim(),
+    repo: document.getElementById("cfgRepo").value.trim(),
+    branch: document.getElementById("cfgBranch").value.trim() || "main",
+    path: document.getElementById("cfgPath").value.trim() || "data.json",
+    token: document.getElementById("cfgToken").value.trim()
+  };
+}
+function fillConfigForm(cfg){
+  document.getElementById("cfgOwner").value = cfg.owner;
+  document.getElementById("cfgRepo").value = cfg.repo;
+  document.getElementById("cfgBranch").value = cfg.branch;
+  document.getElementById("cfgPath").value = cfg.path;
+  document.getElementById("cfgToken").value = cfg.token;
+}
+["cfgOwner","cfgRepo","cfgBranch","cfgPath","cfgToken"].forEach(id=>{
+  document.getElementById(id).addEventListener("change", () => saveConfig(getConfigFromForm()));
+});
+
+/* ---------- Status bar ---------- */
+function setStatus(msg, type){
+  const el = document.getElementById("statusBar");
+  el.textContent = msg;
+  el.className = "show " + (type || "info");
+}
+function clearStatus(){ document.getElementById("statusBar").className = ""; }
+
+/* ---------- GitHub API ---------- */
+function b64EncodeUnicode(str){
+  return btoa(unescape(encodeURIComponent(str)));
+}
+function b64DecodeUnicode(str){
+  return decodeURIComponent(escape(atob(str)));
+}
+
+async function githubGetFile(cfg){
+  const url = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${cfg.path}?ref=${cfg.branch}`;
+  const headers = { "Accept": "application/vnd.github+json" };
+  if(cfg.token) headers["Authorization"] = "token " + cfg.token;
+  const res = await fetch(url, { headers });
+  if(res.status === 404) return { notFound: true };
+  if(!res.ok) throw new Error(`GitHub GET lỗi ${res.status}: ${(await res.json()).message || ""}`);
+  const json = await res.json();
+  const content = b64DecodeUnicode(json.content.replace(/\n/g,""));
+  return { data: JSON.parse(content), sha: json.sha };
+}
+
+async function githubPutFile(cfg, dataObj, sha){
+  if(!cfg.token) throw new Error("Chưa nhập GitHub Token — không thể lưu.");
+  const url = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${cfg.path}`;
+  const body = {
+    message: "Update site content via admin panel",
+    content: b64EncodeUnicode(JSON.stringify(dataObj, null, 2)),
+    branch: cfg.branch
+  };
+  if(sha) body.sha = sha;
+  const res = await fetch(url, {
+    method: "PUT",
+    headers: {
+      "Accept": "application/vnd.github+json",
+      "Authorization": "token " + cfg.token,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
+  });
+  const json = await res.json();
+  if(!res.ok) throw new Error(`GitHub PUT lỗi ${res.status}: ${json.message || ""}`);
+  return json;
+}
+
+/* ---------- Init ---------- */
+async function initAdmin(){
+  const cfg = loadConfig();
+  fillConfigForm(cfg);
+  await reloadData(false);
+  bindTopButtons();
+  bindTabs();
+}
+
+async function reloadData(showOk){
+  const cfg = getConfigFromForm();
+  setStatus("Đang tải dữ liệu từ GitHub...", "info");
+  try{
+    const result = await githubGetFile(cfg);
+    if(result.notFound){
+      siteData = JSON.parse(JSON.stringify(DEFAULT_DATA));
+      currentSha = null;
+      setStatus("Chưa tìm thấy data.json trên GitHub — đang dùng nội dung mặc định. Bấm 'Lưu & Xuất bản' để tạo file mới.", "info");
+    } else {
+      siteData = result.data;
+      currentSha = result.sha;
+      if(showOk) setStatus("Đã tải dữ liệu mới nhất từ GitHub.", "ok");
+      else clearStatus();
+    }
+  } catch(err){
+    siteData = JSON.parse(JSON.stringify(DEFAULT_DATA));
+    currentSha = null;
+    setStatus("Không tải được từ GitHub (" + err.message + "). Đang dùng nội dung mặc định để chỉnh sửa.", "err");
+  }
+  renderAllTabs();
+}
+
+function bindTopButtons(){
+  document.getElementById("reloadBtn").addEventListener("click", () => reloadData(true));
+  document.getElementById("saveBtn").addEventListener("click", doSave);
+  document.getElementById("exportBtn").addEventListener("click", doExport);
+  document.getElementById("importBtn").addEventListener("click", () => document.getElementById("importFile").click());
+  document.getElementById("importFile").addEventListener("change", doImport);
+}
+
+async function doSave(){
+  const cfg = getConfigFromForm();
+  saveConfig(cfg);
+  setStatus("Đang lưu lên GitHub...", "info");
+  try{
+    const result = await githubPutFile(cfg, siteData, currentSha);
+    currentSha = result.content.sha;
+    setStatus("✓ Đã lưu thành công! Trang chính sẽ cập nhật sau khoảng 30–90 giây.", "ok");
+  } catch(err){
+    setStatus("Lỗi khi lưu: " + err.message, "err");
+  }
+}
+
+function doExport(){
+  const blob = new Blob([JSON.stringify(siteData, null, 2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "data.json";
+  a.click();
+}
+
+function doImport(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try{
+      siteData = JSON.parse(reader.result);
+      renderAllTabs();
+      setStatus("Đã nhập file JSON. Nhớ bấm 'Lưu & Xuất bản' để đưa lên GitHub.", "ok");
+    } catch(err){
+      setStatus("File JSON không hợp lệ: " + err.message, "err");
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = "";
+}
+
+function bindTabs(){
+  document.querySelectorAll(".tab-btn").forEach(btn=>{
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+      document.querySelectorAll(".tab-panel").forEach(p=>p.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("panel-"+btn.dataset.tab).classList.add("active");
+    });
+  });
+}
+
+/* ============ Generic recursive form renderer ============ */
+function prettify(key){
+  return key.replace(/([A-Z])/g," $1").replace(/^./,c=>c.toUpperCase());
+}
+
+function isStringArray(arr){
+  return Array.isArray(arr) && arr.every(v => typeof v === "string");
+}
+
+function setDeep(root, path, value){
+  let obj = root;
+  for(let i=0;i<path.length-1;i++) obj = obj[path[i]];
+  obj[path[path.length-1]] = value;
+}
+function getDeep(root, path){
+  let obj = root;
+  for(const k of path) obj = obj[k];
+  return obj;
+}
+
+function renderNode(value, path, keyLabel){
+  if(typeof value === "string"){
+    const wrapper = document.createElement("div");
+    wrapper.className = "field-row";
+    const label = document.createElement("label");
+    label.className = "field-label";
+    label.textContent = prettify(keyLabel);
+    wrapper.appendChild(label);
+    const long = value.length > 70;
+    const input = document.createElement(long ? "textarea" : "input");
+    if(!long) input.type = "text";
+    input.value = value;
+    input.addEventListener("input", () => setDeep(siteData, path, input.value));
+    wrapper.appendChild(input);
+    return wrapper;
+  }
+
+  if(typeof value === "number"){
+    const wrapper = document.createElement("div");
+    wrapper.className = "field-row";
+    const label = document.createElement("label");
+    label.className = "field-label";
+    label.textContent = prettify(keyLabel);
+    wrapper.appendChild(label);
+    const input = document.createElement("input");
+    input.type = "number";
+    input.value = value;
+    input.addEventListener("input", () => setDeep(siteData, path, Number(input.value)));
+    wrapper.appendChild(input);
+    return wrapper;
+  }
+
+  if(Array.isArray(value)){
+    if(isStringArray(value)){
+      const wrapper = document.createElement("div");
+      wrapper.className = "field-row";
+      const label = document.createElement("label");
+      label.className = "field-label";
+      label.textContent = prettify(keyLabel) + " (mỗi dòng 1 mục)";
+      wrapper.appendChild(label);
+      const ta = document.createElement("textarea");
+      ta.value = value.join("\n");
+      ta.style.minHeight = Math.min(220, 28 * Math.max(2, value.length)) + "px";
+      ta.addEventListener("input", () => {
+        setDeep(siteData, path, ta.value.split("\n"));
+      });
+      wrapper.appendChild(ta);
+      return wrapper;
+    }
+
+    // array of objects
+    const container = document.createElement("div");
+    container.className = "field-row";
+    const label = document.createElement("label");
+    label.className = "field-label";
+    label.textContent = prettify(keyLabel);
+    container.appendChild(label);
+
+    const listBox = document.createElement("div");
+    container.appendChild(listBox);
+
+    function renderList(){
+      listBox.innerHTML = "";
+      value.forEach((item, idx) => {
+        const itemBox = document.createElement("div");
+        itemBox.className = "array-item";
+        const head = document.createElement("div");
+        head.className = "array-item-head";
+        const span = document.createElement("span");
+        span.textContent = `#${idx+1}`;
+        head.appendChild(span);
+        const rmBtn = document.createElement("button");
+        rmBtn.className = "remove-btn";
+        rmBtn.textContent = "Xoá mục này";
+        rmBtn.addEventListener("click", () => {
+          value.splice(idx,1);
+          renderList();
+        });
+        head.appendChild(rmBtn);
+        itemBox.appendChild(head);
+
+        Object.keys(item).forEach(k => {
+          itemBox.appendChild(renderNode(item[k], path.concat(idx,k), k));
+        });
+
+        listBox.appendChild(itemBox);
+      });
+    }
+    renderList();
+
+    const addBtn = document.createElement("button");
+    addBtn.className = "add-btn";
+    addBtn.textContent = "+ Thêm mục mới";
+    addBtn.addEventListener("click", () => {
+      const template = value.length ? JSON.parse(JSON.stringify(value[value.length-1])) : {};
+      Object.keys(template).forEach(k => {
+        if(typeof template[k] === "string") template[k] = "";
+        else if(Array.isArray(template[k]) && isStringArray(template[k])) template[k] = [];
+        else if(typeof template[k] === "number") template[k] = 0;
+      });
+      value.push(template);
+      renderList();
+    });
+    container.appendChild(addBtn);
+
+    return container;
+  }
+
+  if(typeof value === "object" && value !== null){
+    const fs = document.createElement("fieldset");
+    fs.className = "node-obj";
+    const legend = document.createElement("legend");
+    legend.textContent = prettify(keyLabel);
+    fs.appendChild(legend);
+    Object.keys(value).forEach(k => {
+      fs.appendChild(renderNode(value[k], path.concat(k), k));
+    });
+    return fs;
+  }
+
+  const fallback = document.createElement("div");
+  return fallback;
+}
+
+function renderAllTabs(){
+  const genPanel = document.getElementById("panel-general");
+  genPanel.innerHTML = "";
+  genPanel.appendChild(renderNode(siteData.shared, ["shared"], "Thông tin chung (dùng chung 2 ngôn ngữ)"));
+
+  const enPanel = document.getElementById("panel-en");
+  enPanel.innerHTML = "";
+  Object.keys(siteData.en).forEach(k => {
+    enPanel.appendChild(renderNode(siteData.en[k], ["en", k], k));
+  });
+
+  const viPanel = document.getElementById("panel-vi");
+  viPanel.innerHTML = "";
+  Object.keys(siteData.vi).forEach(k => {
+    viPanel.appendChild(renderNode(siteData.vi[k], ["vi", k], k));
+  });
+}
+</script>
+</body>
+</html>
