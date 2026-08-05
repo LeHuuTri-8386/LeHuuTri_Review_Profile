@@ -37,9 +37,9 @@
       "eyebrow": "Who I Am",
       "title": "About Me",
       "paragraphs": [
-        "Information Technology student majoring in Computer Networks at HCMC University of Technology (HUTECH), with a career orientation toward System Administration and Cloud Infrastructure.",
-        "Possess knowledge and hands-on practical experience with Linux operating systems and Cisco network device configuration.",
-        "Seeking to apply for a staff position to leverage academic knowledge, develop practical skills, and contribute to the growth of the company."
+        "Information Technology student majoring in Computer Networks at Ho Chi Minh City University of Technology (HUTECH), pursuing a career in System Administration and Cloud Infrastructure. Possesses a solid foundation in Linux operating systems and computer networking, along with hands-on experience in configuring and managing Cisco networking devices.",
+        "",
+        "Seeking an opportunity to join a professional work environment where I can apply my knowledge, further develop my practical skills, and contribute to the organization's long-term growth and success."
       ]
     },
     "stats": [
@@ -249,9 +249,9 @@
       "eyebrow": "Về Tôi",
       "title": "Giới Thiệu",
       "paragraphs": [
-        "Sinh viên Công nghệ Thông tin chuyên ngành Mạng Máy Tính tại Trường Đại học Công nghệ TP.HCM (HUTECH), định hướng nghề nghiệp theo hướng Quản trị Hệ thống và Hạ tầng Đám mây.",
-        "Có kiến thức và kinh nghiệm thực hành với hệ điều hành Linux và cấu hình thiết bị mạng Cisco.",
-        "Tìm kiếm cơ hội áp dụng kiến thức học thuật, phát triển kỹ năng thực tế và đóng góp vào sự phát triển của tổ chức."
+        "Sinh viên ngành Công nghệ Thông tin, chuyên ngành Mạng máy tính tại Trường Đại học Công nghệ TP. Hồ Chí Minh (HUTECH), định hướng phát triển sự nghiệp trong lĩnh vực Quản trị Hệ thống và Hạ tầng Điện toán Đám mây. Có nền tảng kiến thức cơ bản về hệ điều hành Linux và mạng máy tính, cùng kinh nghiệm thực hành trong cấu hình, quản trị thiết bị mạng Cisco.",
+        "",
+        "Mong muốn gia nhập môi trường làm việc chuyên nghiệp để áp dụng kiến thức đã tích lũy, phát triển kỹ năng thực tế, đồng thời đóng góp giá trị vào sự phát triển bền vững của doanh nghiệp."
       ]
     },
     "stats": [
@@ -282,17 +282,17 @@
       "items": [
         {
           "icon": "☁",
-          "name": "AWS",
+          "name": "Quản trị mạng máy tính cơ bản",
           "level": 2
         },
         {
           "icon": "🐧",
-          "name": "Quản Trị Server Linux",
+          "name": "Hệ điều hành Linux",
           "level": 2
         },
         {
           "icon": "🔌",
-          "name": "Cấu Hình Thiết Bị Cisco",
+          "name": "Dịch vụ mạng (DNS, DHCP, FTP)",
           "level": 2
         }
       ]
@@ -301,9 +301,9 @@
       "eyebrow": "Tôi Mang Lại Gì",
       "title": "Điểm Mạnh",
       "items": [
-        "Kiến thức cơ bản về hệ thống mạng và các dịch vụ như DNS, DHCP và FTP",
-        "Kinh nghiệm cơ bản làm việc trong môi trường Linux",
-        "Khả năng tự học, nghiên cứu tài liệu và chủ động giải quyết vấn đề"
+        "Có kiến thức cơ bản về hệ thống mạng và các dịch vụ như DNS, DHCP và FTP.",
+        "Có kinh nghiệm cơ bản làm việc trong môi trường Linux.",
+        "Có kiến thức cơ bản về hệ thống mạng TCP/IP, LAN/WAN"
       ]
     },
     "experience": {
@@ -323,7 +323,7 @@
         },
         {
           "date": "2026",
-          "org": "365EJSC",
+          "org": "365 EJSC",
           "role": "Thực Tập Sinh Backend Developer",
           "desc": "Thực tập sinh Backend Developer – 365EJSC – 2 tháng",
           "tags": [
@@ -336,7 +336,7 @@
           "date": "01/2022",
           "org": "HUTECH",
           "role": "Sinh Viên — Mạng Máy Tính",
-          "desc": "Chuyên ngành Mạng Máy Tính tại HUTECH từ tháng 01/2022 đến 04/2026. Tập trung vào quản trị Linux, cấu hình Cisco, điện toán đám mây AWS và lập trình Python thực tế.",
+          "desc": "Chuyên ngành Mạng Máy Tính tại HUTECH từ tháng 01/2022 đến 04/2026. Tập trung vào quản trị Linux, cấu hình Cisco, điện toán đám mây AWS và lập trình Python.",
           "tags": [
             "HUTECH",
             "Networking",
@@ -428,6 +428,6 @@
       ]
     },
     "footerRight": "HUTECH · Mạng Máy Tính",
-    "marquee": "Lê Hữu Trí - Xem Hồ Sơ"
+    "marquee": "Lê Hữu Trí_CV - Trang Hiển Thị Thông Tin Hồ Sơ"
   }
 }
