@@ -80,7 +80,7 @@
         },
         {
           "icon": "🔌",
-          "name": "Cisco Device Configuration",
+          "name": "Network Services (DNS, DHCP, FTP)",
           "level": 2
         }
       ]
