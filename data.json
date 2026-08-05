@@ -89,9 +89,9 @@
       "eyebrow": "What I Bring",
       "title": "Strengths",
       "items": [
-        "Basic knowledge of network systems and services such as DNS, DHCP, and FTP",
-        "Basic experience working in a Linux environment",
-        "Ability to self-learn, research documentation, and proactively solve problems"
+        "Basic knowledge of DNS, DHCP, and FTP services.",
+        "Experience working with Linux operating systems.",
+        "Basic understanding of TCP/IP, LAN, and WAN networking."
       ]
     },
     "experience": {
